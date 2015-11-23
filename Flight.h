@@ -30,7 +30,7 @@ namespace Airline {
         string getArrTime();
         void setIdentifier(char newIdentifier);
         char getIdentifier();
-        // void createSeatMap();
+        // void createSeatMap(); Fuck YOU
         // void addPlane();
     private:
         string depCity;
