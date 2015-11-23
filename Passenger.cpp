@@ -4,17 +4,28 @@
 
 #include "Passenger.h"
 
-#include <string>
+#include <iostream> // std
 #include "Itinerary.h"
 #include "Passenger.h"
+
+using namespace std;
+using std::vector;
 
 namespace Airline {
     class Passenger{
     public:
         Passenger();
+        string getName();
+
+        Void setName(string & fName, string & lName) const;
+        Void Passenger::setFirstName(string & fName) const;
+        Void Passenger::setLastName(string & lName) const;
     private:
-        string name;
         double balance;
+        string firstName;
+        string lastName;
+        Itinerary * itinerary = new Itinerary();
+
         // Itinerary * itineraryList;
     };
 }
