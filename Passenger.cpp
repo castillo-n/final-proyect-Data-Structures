@@ -16,16 +16,18 @@ namespace Airline {
     public:
         Passenger();
         string getName();
+        Itinerary getItinerary();
 
+        void setItinerary(Itinerary &theItine) const;
         Void setName(string & fName, string & lName) const;
         Void Passenger::setFirstName(string & fName) const;
         Void Passenger::setLastName(string & lName) const;
+
     private:
         double balance;
         string firstName;
         string lastName;
-        Itinerary * itinerary = new Itinerary();
-
+        Itinerary *itinerary;
         // Itinerary * itineraryList;
     };
 }

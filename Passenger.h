@@ -26,12 +26,12 @@ namespace Airline {
     Void Passenger::setLastName(string & lName) const{
         lastName = lName;
     }
-
-//    Passenger
-//    -	Name
-//    -	Balance
-//    -	Itinerary List
-
+    Itinerary Passenger::getItinerary(){
+        return itinerary;
+    }
+    void Passenger::setItinerary(Itinerary &theItine) const{
+        itinerary = theItine;
+    }
 }
 
 
