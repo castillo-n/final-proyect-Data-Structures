@@ -3,12 +3,28 @@
 //
 
 #include "Flight.h"
+#include "Plane.h"
+#include "Passenger.h"
+#include "Seat.h"
+#include "Economy.h"
+#include "EconomyPlus.h"
+#include "FirstClass.h"
+#include <string>
 
 namespace Airline{
+
     Flight::Flight(){
+        depCity = "";
+        arrCity = "";
+        depDate = "";
+        arrDate = "";
+        depTime = "";
+        arrTime = "";
+        identifier = '0';
+        distance = 0;
     }
 
-    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, char newIdentifier){
+    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, char newIdentifier, int newDisttance){
         depCity = newDepCity;
         arrCity = newArrCity;
         depDate = newDepDate;
@@ -16,6 +32,7 @@ namespace Airline{
         depTime = newDepTime;
         arrTime = newArrTime;
         identifier = newIdentifier;
+        distance = newDistance;
     }
 
     void Flight::setDepCity(string newDepCity){
@@ -57,10 +74,49 @@ namespace Airline{
     string Flight::getDepTime(){
         return depTime;
     }
-    void setArrTime(string newArrTime);
-    string getArrTime();
-    void setIdentifier(char newIdentifier);
-    char getIdentifier();
-    void createSeatMap();
-    void addPlane();
+
+    void Flight::setArrTime(string newArrTime){
+        arrTime = newArrTime;
+    }
+
+    string Flight::getArrTime(){
+        return arrTime;
+    }
+
+    void Flight::setIdentifier(char newIdentifier){
+        identifier = newIdentifier;
+    }
+
+    char Flight::getIdentifier(){
+        return identifier;
+    }
+
+    void Flight::addPlane(Plane plane, int i){
+        planeList[i] = plane;
+    }
+
+    Plane Flight::getPlane(int i){
+        return planList[i];
+    }
+
+    void Flight::createSeatMap(){
+        int i  = 0;
+        while(planeList[i]!= null){
+            for(int j = 0; j < planeList[i]->getRows(); j++){
+                for(int k; k < planeList[i]->getColumns(); k++){
+                    if(j < 3){
+                        seatMap[i][j][k] = new FirstClass();
+                    }
+                    else if(j >= 3 && j < 9){
+                        seatMap[i][j][k] = new EconomyPlus();
+                    }
+                    if(j >= 9 && j < planeList[i]->getRows()){
+                        seatMap[i][j][k] = new Economy();
+                    }
+                }
+            }
+            i++;
+        }
+    }
+
 }

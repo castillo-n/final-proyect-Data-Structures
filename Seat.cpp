@@ -29,6 +29,14 @@ namespace Airline {
             miles = newMiles;
         }
 
+        void Seat::setSeatPos(char newSeatPos){
+            seatPos = newSeatPos;
+        }
+
+        char Seat::getSeatPos(){
+            return seatPos;
+        }
+
         double Seat::getPrice() const {
             return price;
         }
