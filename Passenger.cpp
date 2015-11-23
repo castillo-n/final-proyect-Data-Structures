@@ -27,7 +27,7 @@ namespace Airline {
         double balance;
         string firstName;
         string lastName;
-        Itinerary *itinerary;
-        // Itinerary * itineraryList;
+        int numberOfItineraries;
+        Itinerary ** itinerary = new Itinerary*[100]; //100 flights, that should be more than necessary for a standard or a frequent flyer.
     };
 }

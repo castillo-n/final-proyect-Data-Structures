@@ -26,11 +26,17 @@ namespace Airline {
     Void Passenger::setLastName(string & lName) const{
         lastName = lName;
     }
-    Itinerary Passenger::getItinerary(){
-        return itinerary;
+    Itinerary Passenger::getItinerary(String flightName){
+        for(int i=0; i < iterary.size(); i++){
+            if(iterary[i].getFlight().getFlightName() == flightName){
+                return iterary[i];
+            }
+        }
+        return false;
     }
     void Passenger::setItinerary(Itinerary &theItine) const{
-        itinerary = theItine;
+        numberOfItineraries++;
+        itinerary[numberOfItineraries] = theItine;
     }
 }
 
