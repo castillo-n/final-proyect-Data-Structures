@@ -11,6 +11,7 @@
 #include "FirstClass.h"
 #include <string>
 
+<<<<<<< Updated upstream
 namespace Airline{
 
     Flight::Flight(){
@@ -74,6 +75,7 @@ namespace Airline{
     string Flight::getDepTime(){
         return depTime;
     }
+<<<<<<< HEAD
 
     void Flight::setArrTime(string newArrTime){
         arrTime = newArrTime;
@@ -120,3 +122,44 @@ namespace Airline{
     }
 
 }
+=======
+    void setArrTime(string newArrTime);
+    string getArrTime();
+    void setIdentifier(char newIdentifier);
+    char getIdentifier();
+    void createSeatMap();
+    void addPlane();
+}
+=======
+
+
+
+
+
+
+
+namespace Airline {
+
+    double Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour,
+                                       const int &minute) {
+        time_t timer;
+        int second = 0;
+        struct tm userTime = {0};
+        double seconds;
+        userTime.tm_year = year - 1900;//0 is 1900
+        userTime.tm_mon = month - 1; //jan is 0
+        userTime.tm_mday = day;
+        userTime.tm_hour = hour;
+        userTime.tm_min = minute;
+        userTime.tm_sec = second;
+        time_t now = time(0);
+        seconds = difftime(now, mktime(&userTime));
+        double minutes = seconds / 60;
+        double hours = minutes / 60;
+        double days = minutes / 24;
+
+        return floor(days);
+    }
+}
+>>>>>>> Stashed changes
+>>>>>>> origin/master
