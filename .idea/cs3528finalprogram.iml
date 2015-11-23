@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Economy.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Economy.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/EconomyPlus.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/EconomyPlus.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/FirstClass.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/FirstClass.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Flight.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Flight.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Itinerary.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Itinerary.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Passenger.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Passenger.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Plane.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Plane.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Seat.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Seat.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+    <content url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram">
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Economy.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Economy.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/EconomyPlus.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/EconomyPlus.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/FirstClass.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/FirstClass.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Flight.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Flight.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Itinerary.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Itinerary.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Passenger.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Passenger.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Plane.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Plane.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Seat.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/Seat.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../CS3528/cs3528finalprogram/main.cpp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
