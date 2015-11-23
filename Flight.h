@@ -30,8 +30,8 @@ namespace Airline {
         string getArrTime();
         void setIdentifier(char newIdentifier);
         char getIdentifier();
-        // void createSeatMap(); Fuck YOU
-        // void addPlane();
+        void createSeatMap();
+        void addPlane();
     private:
         string depCity;
         string arrCity;
@@ -40,8 +40,8 @@ namespace Airline {
         string arrDate;
         string arrTime;
         char identifier;
-        // Plane const * planeList;
-        // Seat const * const * seatMap;
+        Plane const * planeList[100];
+        Seat const * const * seatMap[100][100];
         // Passenger const * passengerList;
     };
 }
