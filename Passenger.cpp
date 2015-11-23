@@ -3,3 +3,18 @@
 //
 
 #include "Passenger.h"
+
+#include <string>
+#include "Itinerary.h"
+#include "Passenger.h"
+
+namespace Airline {
+    class Passenger{
+    public:
+        Passenger();
+    private:
+        string name;
+        double balance;
+        // Itinerary * itineraryList;
+    };
+}

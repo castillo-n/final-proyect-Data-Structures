@@ -11,14 +11,7 @@
 using namespace std;
 
 namespace Airline {
-    class Passenger{
-    public:
-        Passenger();
-    private:
-        string name;
-        double balance;
-        // Itinerary * itineraryList;
-    };
+
 }
 
 
