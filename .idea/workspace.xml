@@ -51,14 +51,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Flight.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Flight.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flight.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75977653">
+            <state vertical-scroll-proportion="0.0">
               <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding>
                 <element signature="e#103#120#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redmeClasses.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/redmeClasses.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.4804064">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -105,6 +115,7 @@
         <option value="$PROJECT_DIR$/Plane.h" />
         <option value="$PROJECT_DIR$/Seat.h" />
         <option value="$PROJECT_DIR$/Flight.h" />
+        <option value="$PROJECT_DIR$/redmeClasses.md" />
       </list>
     </option>
   </component>
@@ -204,7 +215,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24968314" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -440,11 +451,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Flight.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75977653">
+        <state vertical-scroll-proportion="0.0">
           <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding>
             <element signature="e#103#120#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redmeClasses.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4804064">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
