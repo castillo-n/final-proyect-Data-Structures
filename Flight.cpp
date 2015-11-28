@@ -11,7 +11,6 @@
 #include "FirstClass.h"
 #include <string>
 
-<<<<<<< Updated upstream
 namespace Airline{
 
     Flight::Flight(){
@@ -130,8 +129,6 @@ namespace Airline{
     void createSeatMap();
     void addPlane();
 }
-=======
-
 
 
 
@@ -161,5 +158,8 @@ namespace Airline {
         return floor(days);
     }
 }
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 >>>>>>> origin/master
+=======
+>>>>>>> Stashed changes
