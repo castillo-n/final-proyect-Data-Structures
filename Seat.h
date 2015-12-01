@@ -12,7 +12,7 @@ namespace Airline {
         Seat(double newPrice); // Constructor that initializes the price value
         Seat(double newPrice, int days); // Constructor that initializes price and days
         Seat(double newPrice, int days, int newMiles); // Constructor that initializes price, days, and miles
-        void setSeatPos(char newSeatPos);
+        void setSeatAv(char newSeatAv);
         char getSeatPos() const;
         double getPrice() const; // gets the price
         void setPrice(double newPrice); // sets a new price
@@ -22,7 +22,7 @@ namespace Airline {
         void setMiles(int newMiles); // set the number of miles of travel
 	    virtual int CalculatePrice() const; // returns the calculated price of the seat
     private:
-        char seatPos;
+        char seatAv;
         double price; // contains the price of the seat
         int NumDays; // contains the number of days before departure
         int miles; // contains the distance of travel

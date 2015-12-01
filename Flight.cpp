@@ -99,26 +99,41 @@ namespace Airline{
         return designatedPlane;
     }
 
-    /*void Flight::createSeatMap( double price) {
-        for(vector< vector<Seat> >::iterator row = seatMap.begin(); row != seatMap.end(); ++row){
-            for(vector<Seat>::iterator col = row->begin(); col != row->end(); ++col){
-                if( i < 3 ) {
-                    seatMap[i][j] = new FirstClass();
-                }
-                else if(i >= 3 && i < 9 ){
-                    seatMap[i][j] = new EconomyPlus();
-                    seatMap[i][j]->setMiles(distance);
-                }
-                else {
-                    seatMap[i][j] = new Economy();
-                }
+    void Flight::createSeatMap() {
+
+        int EconRows = designatedPlane->getEconRows();
+        int EconPlusRows = designatedPlane->getEconPlusRows();
+        int FirstClassRows = designatedPlane->getFirstClassRows();
+        int col = designatedPlane->getColumns();
+
+        for(int i = 0; i < FirstClassRows; i++){
+            vector<Seat> FirstClassRow;
+            for(int j = 0; j < col; j++ ){
+                FirstClassRow.push_back(new FirstClass());
             }
+            seatMap.push_back(FirstClassRow);
         }
-    }/*
 
-    /*Seat Flight::getSeat() const {
+        for(int i = 0; i < EconPlusRows; i++){
+            vector<Seat> EconPlusRow;
+            for(int j = 0; j < col; j++ ){
+                EconPlusRow.push_back(new EconomyPlus());
+            }
+            seatMap.push_back(EconPlusRow);
+        }
 
-    }*/
+        for(int i = 0; i < EconRows; i++){
+            vector<Seat> EconRow;
+            for(int j = 0; j < col; j++ ){
+                EconRow.push_back(new Economy());
+            }
+            seatMap.push_back(EconRow);
+        }
+    }
+
+    Seat Flight::getSeat(int row, int col) const {
+        return seatMap[row][col];
+    }
 
 
     void Flight::addPassenger(Passenger p){
@@ -134,7 +149,7 @@ namespace Airline{
     }
 
     // don't know what this does
-    int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
+    /*int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
         time_t timer;
         int second = 0;
         struct tm userTime = {0};
@@ -152,6 +167,6 @@ namespace Airline{
         double days = minutes / 24;
 
         return static_cast<int>(floor(days));
-    }
+    }*/
 }
 
