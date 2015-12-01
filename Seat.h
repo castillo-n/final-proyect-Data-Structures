@@ -5,6 +5,8 @@
 #ifndef CS3528PROGRAM3_SEAT_H
 #define CS3528PROGRAM3_SEAT_H
 
+//test Comment
+
 namespace Airline {
     class Seat { // Abstract object to implement to other objects
     public:
