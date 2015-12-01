@@ -8,6 +8,7 @@
 #include "Passenger.h"
 
 #include <iostream> // std
+#include <vector>
 #include "Itinerary.h"
 #include "Passenger.h"
 
@@ -22,9 +23,9 @@ namespace Airline {
         Itinerary getItinerary();
 
         void setItinerary(Itinerary &theItine) const;
-        Void setName(string & fName, string & lName) const;
-        Void Passenger::setFirstName(string & fName) const;
-        Void Passenger::setLastName(string & lName) const;
+        void setName(string & fName, string & lName) const;
+        void setFirstName(string & fName) const;
+        void setLastName(string & lName) const;
 
     private:
         double balance;

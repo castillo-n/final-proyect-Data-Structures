@@ -6,3 +6,9 @@
 *.xml
 
 *.xml
+
+*.xml
+
+*.iml
+
+.idea/cs3528finalprogram.iml

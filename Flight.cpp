@@ -113,13 +113,10 @@ namespace Airline{
         }
     }
 
-<<<<<<< HEAD
     void Flight::addPassenger(Passenger * p){
         passengerList->emplace_back(p);
     }
-=======
 }
-=======
     void setArrTime(string newArrTime);
     string getArrTime();
     void setIdentifier(char newIdentifier);
@@ -130,15 +127,12 @@ namespace Airline{
 
 
 
-
-
->>>>>>> origin/master
-
     Passenger Flight::getPassenger(int i){
         return passengerList[i];
     }
 
     // don't know what this does
+    // this returns the difference between the date of today and the freaking flight date :) -Nelson
     int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
         time_t timer;
         int second = 0;
@@ -159,12 +153,3 @@ namespace Airline{
         return static_cast<int>(floor(days));
     }
 }
-<<<<<<< HEAD
-
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
->>>>>>> origin/master
-=======
->>>>>>> Stashed changes
->>>>>>> origin/master
