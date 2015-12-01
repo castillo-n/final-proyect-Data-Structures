@@ -39,7 +39,7 @@ namespace Airline{
         depCity = newDepCity;
     }
 
-    string Flight::getDepCity(){
+    string Flight::getDepCity() const{
         return depCity;
     }
 
@@ -47,7 +47,7 @@ namespace Airline{
         arrCity = newArrCity;
     }
 
-    string Flight::getArrCity(){
+    string Flight::getArrCity() const{
         return arrCity;
     }
 
@@ -55,7 +55,7 @@ namespace Airline{
         depDate = newDepDate;
     }
 
-    string Flight::getDepDate(){
+    string Flight::getDepDate() const{
         return depDate;
     }
 
@@ -63,7 +63,7 @@ namespace Airline{
         arrDate = newArrDate;
     }
 
-    string Flight::getArrDate(){
+    string Flight::getArrDate() const{
         return arrDate;
     }
 
@@ -71,7 +71,7 @@ namespace Airline{
         depTime = newDepTime;
     }
 
-    string Flight::getDepTime(){
+    string Flight::getDepTime() const{
         return depTime;
     }
 
@@ -79,7 +79,7 @@ namespace Airline{
         arrTime = newArrTime;
     }
 
-    string Flight::getArrTime(){
+    string Flight::getArrTime() const{
         return arrTime;
     }
 
@@ -87,30 +87,34 @@ namespace Airline{
         identifier = newIdentifier;
     }
 
-    char Flight::getIdentifier(){
+    char Flight::getIdentifier() const{
         return identifier;
     }
 
-    void Flight::addPlane(Plane plane, int i){
-        planeList[i] = plane;
+    void Flight::addPlane(Plane plane){
+        designatedPlane = plane;
     }
 
     Plane Flight::getPlane(){
         return designatedPlane;
     }
 
-    void Flight::createSeatMap( double price) {
-        for(int i = 0; i < designatedPlane->getRows(); i++ ){
-            for(int j = 0; j < designatedPlane->getColumns(); j++){
-                if( i < 3 )
-                    seatMap[i][j] = new FirstClass(price);
-                    seatMap[i][j]->setSeatPos(i + 'A' + i );
-                else if(i >= 3 && i < 9 )
-                    seatMap[i][j] = new EconomyPlus(price, 0 , distance);
-                else
-                    seatMap[i][j] = new Economy(price);
+    /*void Flight::createSeatMap( double price) {
+        for(vector< vector<Seat> >::iterator row = seatMap.begin(); row != seatMap.end(); ++row){
+            for(vector<Seat>::iterator col = row->begin(); col != row->end(); ++col){
+                if( i < 3 ) {
+                    seatMap[i][j] = new FirstClass();
+                }
+                else if(i >= 3 && i < 9 ){
+                    seatMap[i][j] = new EconomyPlus();
+                    seatMap[i][j]->setMiles(distance);
+                }
+                else {
+                    seatMap[i][j] = new Economy();
+                }
             }
         }
+<<<<<<< HEAD
     }
 
     void Flight::addPassenger(Passenger * p){
@@ -124,11 +128,30 @@ namespace Airline{
     void createSeatMap();
     void addPlane();
 }
+=======
+    }/*
+>>>>>>> origin/master
 
+    /*Seat Flight::getSeat() const {
 
+    }*/
 
+<<<<<<< HEAD
     Passenger Flight::getPassenger(int i){
         return passengerList[i];
+=======
+
+    void Flight::addPassenger(Passenger p){
+        passengerList->push_back(p);
+    }
+
+    Passenger Flight::getPassenger(string name){
+        for(vector<Passenger>::iterator it = passengerList.begin(); it != passengerList.end(); ++it){
+            if(name == it->getName()){
+                    return *it;
+            }
+        }
+>>>>>>> origin/master
     }
 
     // don't know what this does
@@ -153,3 +176,7 @@ namespace Airline{
         return static_cast<int>(floor(days));
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
