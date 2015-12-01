@@ -41,13 +41,12 @@ namespace Airline {
         Plane getPlane() const;
         void createSeatMap();
         Seat getSeat() const;
-        void addPassenger(Passenger * p);
-        Passenger getPassenger() const;
+        void addPassenger(Passenger p);
+        Passenger getPassenger(string name) const;
         int dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute);
 
 
     private:
-        const int rows, cols, number = 100;
         string depCity;
         string arrCity;
         string depDate;
@@ -57,7 +56,7 @@ namespace Airline {
         int distance;
         char identifier;
         Plane * designatedPlane;
-        vector<vector<Seat>> * seatMap;
+        vector< vector<Seat> > * seatMap;
         vector<Passenger> * passengerList;
     };
 }

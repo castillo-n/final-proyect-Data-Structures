@@ -23,8 +23,8 @@ namespace Airline {
 
         void setItinerary(Itinerary &theItine) const;
         Void setName(string & fName, string & lName) const;
-        Void Passenger::setFirstName(string & fName) const;
-        Void Passenger::setLastName(string & lName) const;
+        Void setFirstName(string & fName) const;
+        Void setLastName(string & lName) const;
 
     private:
         double balance;
