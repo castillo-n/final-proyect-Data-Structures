@@ -114,7 +114,6 @@ namespace Airline{
                 }
             }
         }
-<<<<<<< HEAD
     }
 
     void Flight::addPassenger(Passenger * p){
@@ -128,33 +127,25 @@ namespace Airline{
     void createSeatMap();
     void addPlane();
 }
-=======
-    }/*
->>>>>>> origin/master
 
     /*Seat Flight::getSeat() const {
 
     }*/
 
-<<<<<<< HEAD
-    Passenger Flight::getPassenger(int i){
-        return passengerList[i];
-=======
 
     void Flight::addPassenger(Passenger p){
         passengerList->push_back(p);
     }
 
     Passenger Flight::getPassenger(string name){
-        for(vector<Passenger>::iterator it = passengerList.begin(); it != passengerList.end(); ++it){
-            if(name == it->getName()){
-                    return *it;
+        for(vector<Passenger>::iterator it = passengerList.begin(); it != passengerList.end(); ++it) {
+            if (name == it->getName()) {
+                return *it;
             }
         }
->>>>>>> origin/master
     }
 
-    // don't know what this does
+    // don't know what this does 
     // this returns the difference between the date of today and the freaking flight date :) -Nelson
     int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
         time_t timer;
@@ -176,7 +167,3 @@ namespace Airline{
         return static_cast<int>(floor(days));
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
