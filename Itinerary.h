@@ -10,13 +10,14 @@
 #include "Seat.h"
 
 namespace Airline {
+    class Passenger;
+    class Flight;
     class Itinerary {
     public:
         Itinerary();
-        Flight getFlight();
-        Seat getSeat();
-        Passenger getPassenger();
-        int TestMe();
+        Flight getFlight() const;
+        Seat getSeat() const;
+        Passenger getPassenger()const;
         void setFlight(Flight & theFlight) const;//this function will be receiving a pointer
         void setSeat(Seat & theSeat) const;//this function will be receiving a pointer
         void setPassenger(Passenger & thePassenger) const;//this function will be receiving a pointer
