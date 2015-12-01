@@ -5,40 +5,34 @@
 #ifndef FINALPROJECT_PASSENGER_H
 #define FINALPROJECT_PASSENGER_H
 
-#include <string.h>
+#include "Passenger.h"
+
+#include <iostream> // std
 #include "Itinerary.h"
+#include "Passenger.h"
 
 using namespace std;
+using std::vector;
 
 namespace Airline {
+    class Passenger{
+    public:
+        Passenger();
+        string getName();
+        Itinerary getItinerary();
 
-    string Passenger::getName(){
-        return firstName + " " + lastName;
-    }
+        void setItinerary(Itinerary &theItine) const;
+        Void setName(string & fName, string & lName) const;
+        Void Passenger::setFirstName(string & fName) const;
+        Void Passenger::setLastName(string & lName) const;
 
-    Void Passenger::setName(string & fName, string & lName) const{
-        firstName = fName;
-        lastName = lName;
-    }
-    Void Passenger::setFirstName(string & fName) const{
-        firstName = fName;
-    }
-    Void Passenger::setLastName(string & lName) const{
-        lastName = lName;
-    }
-    Itinerary Passenger::getItinerary(String flightName){
-        for(int i=0; i < iterary.size(); i++){
-            if(iterary[i].getFlight().getFlightName() == flightName){
-                return iterary[i];
-            }
-        }
-        return false;
-    }
-    void Passenger::setItinerary(Itinerary &theItine) const{
-        numberOfItineraries++;
-        itinerary[numberOfItineraries] = theItine;
-    }
+    private:
+        double balance;
+        string firstName;
+        string lastName;
+        int numberOfItineraries;
+        vector<Itinerary> itineraryList;
+    };
 }
-
 
 #endif //FINALPROJECT_PASSENGER_H

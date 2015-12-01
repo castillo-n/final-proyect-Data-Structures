@@ -2,32 +2,37 @@
 // Created by Grant on 11/17/2015.
 //
 
-#include "Passenger.h"
-
-#include <iostream> // std
+#include <string.h>
 #include "Itinerary.h"
-#include "Passenger.h"
 
 using namespace std;
-using std::vector;
 
 namespace Airline {
-    class Passenger{
-    public:
-        Passenger();
-        string getName();
-        Itinerary getItinerary();
 
-        void setItinerary(Itinerary &theItine) const;
-        Void setName(string & fName, string & lName) const;
-        Void Passenger::setFirstName(string & fName) const;
-        Void Passenger::setLastName(string & lName) const;
+    string Passenger::getName(){
+        return firstName + " " + lastName;
+    }
 
-    private:
-        double balance;
-        string firstName;
-        string lastName;
-        int numberOfItineraries;
-        Itinerary ** itinerary = new Itinerary*[100]; //100 flights, that should be more than necessary for a standard or a frequent flyer.
-    };
+    Void Passenger::setName(string & fName, string & lName) const{
+        firstName = fName;
+        lastName = lName;
+    }
+    Void Passenger::setFirstName(string & fName) const{
+        firstName = fName;
+    }
+    Void Passenger::setLastName(string & lName) const{
+        lastName = lName;
+    }
+    Itinerary Passenger::getItinerary(String flightName){
+        for(int i=0; i < iterary.size(); i++){
+            if(iterary[i].getFlight().getFlightName() == flightName){
+                return iterary[i];
+            }
+        }
+        return false;
+    }
+    void Passenger::setItinerary(Itinerary &theItine) const{
+        numberOfItineraries++;
+        itinerary[numberOfItineraries] = theItine;
+    }
 }
