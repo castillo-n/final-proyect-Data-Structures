@@ -34,6 +34,30 @@ namespace Airline {
         return rows;
     }
 
+    void Plane::setEconRows(int newEconRows) {
+        econRows = newEconRows;
+    }
+
+    int Plane::getEconRows() const {
+        return econRows;
+    }
+
+    void Plane::setEconPlusRows(int newEconPlusRows) {
+        econPlusRows = newEconPlusRows;
+    }
+
+    int Plane::getEconPlusRows() const {
+        return econPlusRows;
+    }
+
+    void Plane::setFirstClassRows(int newFirstClassRows) {
+        firstClassRows = newFirstClassRows;
+    }
+
+    int Plane::getFirstClassRows() const {
+        return firstClassRows;
+    }
+
     void Plane::setIdentifier(char newIdentifier) {
         identifier = newIdentifier;
     }
