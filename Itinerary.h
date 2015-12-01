@@ -16,9 +16,9 @@ namespace Airline {
         Flight getFlight();
         Seat getSeat();
         Passenger getPassenger();
-        void setFlight(Flight & theFlight) const;
-        void setSeat(Seat & theSeat) const;
-        void setPassenger(Passenger & thePassenger) const;
+        void setFlight(Flight & theFlight) const;//this function will be receiving a pointer
+        void setSeat(Seat & theSeat) const;//this function will be receiving a pointer
+        void setPassenger(Passenger & thePassenger) const;//this function will be receiving a pointer
     private:
          Passenger *passenger;
          Flight  *flight;

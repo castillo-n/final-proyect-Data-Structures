@@ -113,9 +113,26 @@ namespace Airline{
         }
     }
 
+<<<<<<< HEAD
     void Flight::addPassenger(Passenger * p){
         passengerList->emplace_back(p);
     }
+=======
+}
+=======
+    void setArrTime(string newArrTime);
+    string getArrTime();
+    void setIdentifier(char newIdentifier);
+    char getIdentifier();
+    void createSeatMap();
+    void addPlane();
+}
+
+
+
+
+
+>>>>>>> origin/master
 
     Passenger Flight::getPassenger(int i){
         return passengerList[i];
@@ -142,4 +159,12 @@ namespace Airline{
         return static_cast<int>(floor(days));
     }
 }
+<<<<<<< HEAD
 
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+>>>>>>> origin/master
+=======
+>>>>>>> Stashed changes
+>>>>>>> origin/master
