@@ -11,7 +11,6 @@
 #include "FirstClass.h"
 #include <string>
 
-<<<<<<< Updated upstream
 namespace Airline{
 
     Flight::Flight(){
@@ -75,7 +74,6 @@ namespace Airline{
     string Flight::getDepTime(){
         return depTime;
     }
-<<<<<<< HEAD
 
     void Flight::setArrTime(string newArrTime){
         arrTime = newArrTime;
@@ -97,51 +95,34 @@ namespace Airline{
         planeList[i] = plane;
     }
 
-    Plane Flight::getPlane(int i){
-        return planList[i];
+    Plane Flight::getPlane(){
+        return designatedPlane;
     }
 
-    void Flight::createSeatMap(){
-        int i  = 0;
-        while(planeList[i]!= null){
-            for(int j = 0; j < planeList[i]->getRows(); j++){
-                for(int k; k < planeList[i]->getColumns(); k++){
-                    if(j < 3){
-                        seatMap[i][j][k] = new FirstClass();
-                    }
-                    else if(j >= 3 && j < 9){
-                        seatMap[i][j][k] = new EconomyPlus();
-                    }
-                    if(j >= 9 && j < planeList[i]->getRows()){
-                        seatMap[i][j][k] = new Economy();
-                    }
-                }
+    void Flight::createSeatMap( double price) {
+        for(int i = 0; i < designatedPlane->getRows(); i++ ){
+            for(int j = 0; j < designatedPlane->getColumns(); j++){
+                if( i < 3 )
+                    seatMap[i][j] = new FirstClass(price);
+                    seatMap[i][j]->setSeatPos(i + 'A' + i );
+                else if(i >= 3 && i < 9 )
+                    seatMap[i][j] = new EconomyPlus(price, 0 , distance);
+                else
+                    seatMap[i][j] = new Economy(price);
             }
-            i++;
         }
     }
 
-}
-=======
-    void setArrTime(string newArrTime);
-    string getArrTime();
-    void setIdentifier(char newIdentifier);
-    char getIdentifier();
-    void createSeatMap();
-    void addPlane();
-}
-=======
+    void Flight::addPassenger(Passenger * p){
+        passengerList->emplace_back(p);
+    }
 
+    Passenger Flight::getPassenger(int i){
+        return passengerList[i];
+    }
 
-
-
-
-
-
-namespace Airline {
-
-    double Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour,
-                                       const int &minute) {
+    // don't know what this does
+    int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
         time_t timer;
         int second = 0;
         struct tm userTime = {0};
@@ -158,8 +139,7 @@ namespace Airline {
         double hours = minutes / 60;
         double days = minutes / 24;
 
-        return floor(days);
+        return static_cast<int>(floor(days));
     }
 }
->>>>>>> Stashed changes
->>>>>>> origin/master
+

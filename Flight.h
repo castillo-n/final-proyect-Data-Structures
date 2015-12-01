@@ -38,8 +38,14 @@ namespace Airline {
         void setDistance(int newDistance);
         int getDistance() const;
         void addPlane(Plane plane, int i);
-        Plane getPlane(int i) const;
+        Plane getPlane() const;
         void createSeatMap();
+        Seat getSeat() const;
+        void addPassenger(Passenger * p);
+        Passenger getPassenger() const;
+        int dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute);
+
+
     private:
         const int rows, cols, number = 100;
         string depCity;
@@ -50,9 +56,9 @@ namespace Airline {
         string arrTime;
         int distance;
         char identifier;
-        Plane const * planeList[number];
-        Seat const * const * const * seatMap[number][rows][cols];
-        //Passenger const * passengerList;
+        Plane * designatedPlane;
+        vector<vector<Seat>> * seatMap;
+        vector<Passenger> * passengerList;
     };
 }
 
