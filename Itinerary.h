@@ -16,6 +16,7 @@ namespace Airline {
         Flight getFlight();
         Seat getSeat();
         Passenger getPassenger();
+        int TestMe();
         void setFlight(Flight & theFlight) const;//this function will be receiving a pointer
         void setSeat(Seat & theSeat) const;//this function will be receiving a pointer
         void setPassenger(Passenger & thePassenger) const;//this function will be receiving a pointer

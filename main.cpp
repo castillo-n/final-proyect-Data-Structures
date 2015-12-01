@@ -12,5 +12,5 @@ using namespace std;
 using namespace Airline;
 
 int main(){
-
+    Itinerary::test();
 }
