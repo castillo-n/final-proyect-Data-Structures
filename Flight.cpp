@@ -113,22 +113,6 @@ namespace Airline{
             }
             seatMap.push_back(FirstClassRow);
         }
-<<<<<<< HEAD
-=======
-    }
-
-    void Flight::addPassenger(Passenger * p){
-        passengerList->emplace_back(p);
-    }
-}
-    void setArrTime(string newArrTime);
-    string getArrTime();
-    void setIdentifier(char newIdentifier);
-    char getIdentifier();
-    void createSeatMap();
-    void addPlane();
-}
->>>>>>> origin/master
 
         for(int i = 0; i < EconPlusRows; i++){
             vector<Seat> EconPlusRow;
@@ -145,6 +129,17 @@ namespace Airline{
             }
             seatMap.push_back(EconRow);
         }
+    }
+
+    void Flight::displaySeatMap() {
+        int rows = designatedPlane->getRows();
+
+        for(int i = 0; i < rows; i++){
+        }
+    }
+
+    void Flight::occupySeat(int row, int col) {
+        seatMap[row][col]->setSeatAv('X');
     }
 
     Seat Flight::getSeat(int row, int col) const {
@@ -164,7 +159,6 @@ namespace Airline{
         }
     }
 
-<<<<<<< HEAD
     // don't know what this does
     /*int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
 =======
