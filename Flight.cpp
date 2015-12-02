@@ -24,7 +24,7 @@ namespace Airline{
         distance = 0;
     }
 
-    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, char newIdentifier, int newDisttance){
+    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, string newIdentifier, int newDisttance){
         depCity = newDepCity;
         arrCity = newArrCity;
         depDate = newDepDate;
@@ -83,11 +83,11 @@ namespace Airline{
         return arrTime;
     }
 
-    void Flight::setIdentifier(char newIdentifier){
+    void Flight::setIdentifier(string newIdentifier){
         identifier = newIdentifier;
     }
 
-    char Flight::getIdentifier() const{
+    string Flight::getIdentifier() const{
         return identifier;
     }
 

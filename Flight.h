@@ -16,11 +16,13 @@
 
 using namespace std;
 
+//seat setup isn't done, need to get pricing and days
+
 namespace Airline {
     class Flight{
     public:
         Flight();
-        Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, char newIdentifier, int distance);
+        Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, string newIdentifier, int distance);
         void setDepCity(string newDepCity);
         string getDepCity() const;
         void setArrCity(string newArrCity);
@@ -33,8 +35,8 @@ namespace Airline {
         string getDepTime() const;
         void setArrTime(string newArrTime);
         string getArrTime() const;
-        void setIdentifier(char newIdentifier);
-        char getIdentifier() const;
+        void setIdentifier(string newIdentifier);
+        string getIdentifier() const;
         void setDistance(int newDistance);
         int getDistance() const;
         void addPlane(Plane plane, int i);
@@ -56,7 +58,7 @@ namespace Airline {
         string arrDate;
         string arrTime;
         int distance;
-        char identifier;
+        string identifier;
         Plane * designatedPlane;
         vector< vector<Seat *> > seatMap;
         vector<Passenger *> passengerList;

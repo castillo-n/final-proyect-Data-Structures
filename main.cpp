@@ -102,6 +102,31 @@ void addPlane(){
 
 void addFlight(){
     Flight * flight = new Flight();
+    string identifier;
+    string DepCity;
+    string DepDate;
+    string DepTime;
+    string ArrCity;
+    string ArrDate;
+    string ArrTime;
+    int distance;
+
+    cout << "Enter the Flight's tag: ";
+    cin >> identifier;
+    flight->setIdentifier(identifier);
+    cout << "Enter the Departing City: ";
+    cin >> DepCity;
+    flight->setDepCity(DepCity);
+    cout << "Enter the Departure Date: ";
+    cin >> DepDate;
+    flight->setDepDate(DepDate);
+    cout << "Enter the Departure Time: ";
+    cin >> DepTime;
+    flight->setDepTime(DepTime);
+
+
+
+
 
     FlightList.push_back(*flight);
 }
@@ -111,7 +136,12 @@ void addPassenger(){
     string FirstName;
     string LastName;
 
-    cout << "";
+    cout << "Enter the passengers First Name: ";
+    cin >> FirstName;
+    passenger->setFirstName(FirstName);
+    cout << "Enter the passenger's Last Name: ";
+    cin >> LastName;
+    passenger->setLastName(LastName);
 
     PassengerList.push_back(*passenger);
 }
