@@ -1,9 +1,11 @@
 //
 // Created by Grant on 11/17/2015.
 //
-
+#include <string>
 #ifndef FINALPROJECT_PLANE_H
 #define FINALPROJECT_PLANE_H
+
+using namespace std;
 
 namespace Airline {
     class Plane {

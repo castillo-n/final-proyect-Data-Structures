@@ -19,14 +19,17 @@ namespace Airline {
     class Passenger{
     public:
         Passenger();
-        string getName();
-        Itinerary getItinerary();
+        string getName() const;
+        Itinerary getItinerary(char flightIdentifier) const;
 
         void setItinerary(Itinerary &theItine) const;
         void setName(string & fName, string & lName) const;
         void setFirstName(string & fName) const;
         void setLastName(string & lName) const;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 
     private:
         double balance;

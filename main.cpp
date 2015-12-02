@@ -30,6 +30,7 @@ vector<Passenger> PassengerList;
 
 int main(){
 //   int j = testItinerary();
+    Itinerary i;
 
     return 0;
 }

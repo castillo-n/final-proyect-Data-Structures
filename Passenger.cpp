@@ -9,7 +9,7 @@ using namespace std;
 
 namespace Airline {
 
-    string Passenger::getName(){
+    string Passenger::getName() const{
         return firstName + " " + lastName;
     }
 
@@ -23,13 +23,14 @@ namespace Airline {
     Void Passenger::setLastName(string & lName) const{
         lastName = lName;
     }
-    Itinerary Passenger::getItinerary(String flightName){
-        for(int i=0; i < iterary.size(); i++){
-            if(iterary[i].getFlight().getFlightName() == flightName){
-                return iterary[i];
+    Itinerary Passenger::getItinerary(char flightIdentifier){
+        char id;
+        for(vector<Passenger>::iterator it = itineraryList.begin(); it != itineraryList.end(); ++it) {
+            if (id == it->getItinerary().getFlight().getIdentifier()) {
+                return *it->getItinerary().getFlight();
             }
         }
-        return false;
+        return 0;
     }
     void Passenger::setItinerary(Itinerary &theItine) const{
         numberOfItineraries++;
