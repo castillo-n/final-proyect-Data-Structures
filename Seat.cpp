@@ -29,7 +29,7 @@ namespace Airline {
             miles = newMiles;
         }
 
-        void Seat::setSeatAv(char newSeatAv) { }{
+        void Seat::setSeatAv(char newSeatAv){
             seatAv = newSeatAv;
         }
 

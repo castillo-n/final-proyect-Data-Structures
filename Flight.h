@@ -41,6 +41,7 @@ namespace Airline {
         Plane getPlane() const;
         void createSeatMap();
         void displaySeatMap();
+        void clearSeatMap();
         void occupySeat(int row, int col);
         Seat getSeat(int row, int col) const;
         void addPassenger(Passenger p);

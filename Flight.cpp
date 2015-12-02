@@ -133,9 +133,32 @@ namespace Airline{
 
     void Flight::displaySeatMap() {
         int rows = designatedPlane->getRows();
+        int cols = designatedPlane->getColumns();
+
+        cout << "O - vacant seat" << endl;
+        cout << "X - occupied seat" << endl;
+        cout << "First Class Seats 0-" << designatedPlane->getFirstClassRows() - 1 << endl;
+        cout << "Economy Plus Seats " << designatedPlane->getFirstClassRows() <<"-" << designatedPlane->getFirstClassRows() + designatedPlane->getEconPlusRows() - 1 << endl;
+        cout << "Economy Seats " << designatedPlane->getFirstClassRows() + designatedPlane->getEconPlusRows() <<"-" << designatedPlane->getColumns() - 1 << endl;
 
         for(int i = 0; i < rows; i++){
+            cout << i << ": ";
+            for (int j = 0; j < cols; j++){
+                cout << seatMap[i][j]->getSeatAv();
+            }
         }
+    }
+
+    void Flight::clearSeatMap() {
+        int rows = designatedPlane->getRows();
+        int cols = designatedPlane->getColumns();
+
+        for(int i = 0; i < rows; i++){
+            for (int j = 0; j < cols; j++){
+                delete(seatMap[i][j]);
+            }
+        }
+        seatMap.clear();
     }
 
     void Flight::occupySeat(int row, int col) {
@@ -145,7 +168,6 @@ namespace Airline{
     Seat Flight::getSeat(int row, int col) const {
         return seatMap[row][col];
     }
-
 
     void Flight::addPassenger(Passenger p){
         passengerList->push_back(p);
