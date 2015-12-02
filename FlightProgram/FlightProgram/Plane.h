@@ -1,9 +1,11 @@
 //
 // Created by Grant on 11/17/2015.
 //
-
+#include <string>
 #ifndef FINALPROJECT_PLANE_H
 #define FINALPROJECT_PLANE_H
+
+using namespace std;
 
 namespace Airline {
     class Plane {
@@ -20,15 +22,15 @@ namespace Airline {
         int getEconPlusRows() const;
         void setFirstClassRows(int newFirstClassRows);
         int getFirstClassRows() const;
-        void setIdentifier(char newIdentifier); // sets the planes identification tag
-        char getIdentifier() const; // gets the planes identification tag
+        void setIdentifier(string newIdentifier); // sets the planes identification tag
+        string getIdentifier() const; // gets the planes identification tag
     private:
         int columns; // contains the number of columns
         int rows; // contains the number or rows
         int econRows;
         int econPlusRows;
         int firstClassRows;
-        char identifier; // contains the identification tag of the plane
+        string identifier; // contains the identification tag of the plane
     };
 }
 
