@@ -12,7 +12,7 @@ namespace Airline {
         identifier = 0;
     }
 
-    Plane::Plane(int newColumns, int newRows, char newIdentifier) {
+    Plane::Plane(int newColumns, int newRows, string newIdentifier) {
         columns = newColumns;
         rows = newRows;
         identifier = newIdentifier;
@@ -62,7 +62,7 @@ namespace Airline {
         identifier = newIdentifier;
     }
 
-    char Plane::getIdentifier() const {
+    string Plane::getIdentifier() const {
         return identifier;
     }
 

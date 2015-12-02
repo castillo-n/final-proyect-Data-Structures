@@ -23,15 +23,10 @@ namespace Airline {
         Itinerary getItinerary();
 
         void setItinerary(Itinerary &theItine) const;
-<<<<<<< HEAD
         void setName(string & fName, string & lName) const;
         void setFirstName(string & fName) const;
         void setLastName(string & lName) const;
-=======
-        Void setName(string & fName, string & lName) const;
-        Void setFirstName(string & fName) const;
-        Void setLastName(string & lName) const;
->>>>>>> origin/master
+
 
     private:
         double balance;

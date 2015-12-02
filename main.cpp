@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iostream>
 #include <fstream>
 #include <string>
 #include "Seat.h"
@@ -11,7 +10,23 @@
 using namespace std;
 using namespace Airline;
 
+void connect(ifstream file);
+void save(ofstream file);
+void addPlane();
+void addFLight();
+void addPassenger();
+void connectPlaneToFlight();
+void getPlaneInfo(int index);
+void getFlightInfo(int index);
+void getPassengerInfo(int index);
+void purchaseSeat();
+void printItinerary();
+void menu();
+
 //int testItinerary();
+vector<Plane> Fleet;
+vector<Flight> FlightList;
+vector<Passenger> PassengerList;
 
 int main(){
 //   int j = testItinerary();
@@ -45,3 +60,61 @@ int main(){
 //    cout  << "Test ended on itinirary class" << endl;
 //
 //}
+
+void connect(ifstream file){
+
+}
+
+void save(ofstream file){
+
+}
+
+void addPlane(){
+    Plane * plane = new Plane();
+    string identifier;
+    int numFCROws;
+    int numEPRows;
+    int numEcRows;
+    int cols;
+    int rows;
+
+    cout << "Enter the Plane's Tag: ";
+    cin >> identifier;
+    plane->setIdentifier(identifier);
+    cout <<  "Enter the number of rows the plane contains: ";
+    cin >> rows;
+    plane->setRows(rows);
+    cout << "Enter the number of columns the plane contains: ";
+    cin >> cols;
+    cout << "Enter the number of First Class rows: ";
+    cin >> numFCROws;
+    plane->setFirstClassRows(numFCROws);
+    cout << "Enter the number of Economey Plus Rows: ";
+    cin >> numEPRows;
+    plane->setEconPlusRows(numEPRows);
+    cout << "Enter the number of Economy Rows: ";
+    cin >> numEcRows;
+    plane->setEconRows(numEcRows);
+
+    Fleet.push_back(*plane);
+}
+
+void addFlight(){
+    Flight * flight = new Flight();
+
+    FlightList.push_back(*flight);
+}
+
+void addPassenger(){
+    Passenger * passenger = new Passenger();
+    string FirstName;
+    string LastName;
+
+    cout << "";
+
+    PassengerList.push_back(*passenger);
+}
+
+void connectPlaneToFlight(){
+
+}
