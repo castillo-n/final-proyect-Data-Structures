@@ -26,10 +26,6 @@ namespace Airline {
         void setName(string & fName, string & lName) const;
         void setFirstName(string & fName) const;
         void setLastName(string & lName) const;
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 
     private:
         double balance;
