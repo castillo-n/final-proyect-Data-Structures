@@ -31,7 +31,7 @@ vector <Passenger> PassengerList;
 
 
 int main(){
-
+    Seat j;
 }
 void connect(ifstream file){
 
