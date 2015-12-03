@@ -176,3 +176,19 @@ void setUpFlights(){
     }
 }
 
+void getPlaneInfo(){
+
+    string identifier;
+    Plane plane;
+
+    cout << "Enter the Plane's Tag: ";
+    cin >> identifier;
+
+    for(int i = 0; i < Fleet.size(); i++){
+        if(Fleet[i].getIdentifier() == identifier){
+
+        }
+    }
+
+
+}

@@ -6,8 +6,7 @@
 #define FINALPROJECT_PASSENGER_H
 
 #include "Passenger.h"
-
-#include <iostream> // std
+#include <iostream>
 #include <vector>
 #include "Itinerary.h"
 #include "Passenger.h"
