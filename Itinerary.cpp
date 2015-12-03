@@ -5,7 +5,11 @@
 #include "Itinerary.h"
 
 namespace Airline {
-
+    Itinerary::Itinerary() {
+        passenger = new Passenger();
+        flight = new Flight();
+        seat = new Seat();
+    }
     Flight Itinerary::getFlight() const {
         return *flight;
     }

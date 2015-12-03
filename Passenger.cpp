@@ -9,6 +9,13 @@ using namespace std;
 
 namespace Airline {
 
+
+    Passenger::Passenger(){
+        balance=0;
+        firstName = "";
+        lastName = "";
+        numberOfItineraries=0;
+    }
     string Passenger::getName() const{
         return firstName + " " + lastName;
     }
