@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
+#include <cmath>
 #include "Seat.h"
 #include "Plane.h"
 #include "Flight.h"
@@ -213,4 +215,26 @@ void prinPassengerListOnFlight(){
         cout << i << ": " << p.getName() << endl;
     }
 
+}
+
+// don't know what this does
+// this returns the difference between the date of today and the freaking flight date :) -Nelson
+int dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
+    time_t timer;
+    int second = 0;
+    struct tm userTime = {0};
+    double seconds;
+    userTime.tm_year = year - 1900;//0 is 1900
+    userTime.tm_mon = month - 1; //jan is 0
+    userTime.tm_mday = day;
+    userTime.tm_hour = hour;
+    userTime.tm_min = minute;
+    userTime.tm_sec = second;
+    time_t now = time(0);
+    seconds = difftime(now, mktime(&userTime));
+    double minutes = seconds / 60;
+    double hours = minutes / 60;
+    double days = minutes / 24;
+
+    return static_cast<int>(floor(days));
 }

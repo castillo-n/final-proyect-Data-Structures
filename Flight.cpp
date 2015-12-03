@@ -200,6 +200,7 @@ namespace Airline{
         return Passenger();
     }
 
+<<<<<<< Updated upstream
     Passenger Flight::getPassenger(int i) const {
         return *passengerList[i];
     }
@@ -233,4 +234,6 @@ namespace Airline{
 
         return static_cast<int>(floor(days));
     }*/
+=======
+>>>>>>> Stashed changes
 }
