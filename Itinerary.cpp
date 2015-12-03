@@ -7,23 +7,23 @@
 namespace Airline {
 
     Flight Itinerary::getFlight() const {
-        return flight;
+        return *flight;
     }
 
     Seat Itinerary::getSeat() const {
-        return seat;
+        return *seat;
     }
     Passenger Itinerary::getPassenger() const {
-        return passenger;
+        return *passenger;
     }
-    void Itinerary::setFlight(Flight & theFlight) const{ //this function will be receiving a pointer
-        flight = theFlight;
+    void Itinerary::setFlight(Flight theFlight) { //this function will be receiving a pointer
+        *flight = theFlight;
     }
-    void Itinerary::setSeat(Seat & theSeat) const{//this function will be receiving a pointer
-        seat = theSeat;
+    void Itinerary::setSeat(Seat theSeat) {//this function will be receiving a pointer
+        *seat = theSeat;
     }
-    void Itinerary::setPassenger(Passenger & thePassenger) const{//this function will be receiving a pointer
-        passenger = thePassenger;
+    void Itinerary::setPassenger(Passenger thePassenger) {//this function will be receiving a pointer
+        *passenger = thePassenger;
     }
 
 

@@ -25,6 +25,10 @@ void printItinerary();
 void menu();
 //
 
+vector <Plane> Fleet;
+vector <Flight> FlightList;
+vector <Passenger> PassengerList;
+
 
 int main(){
     Airline::Itinerary i;
@@ -109,7 +113,6 @@ void addFlight(){
 
     FlightList.push_back(*flight);
 }
-
 void addPassenger(){
     Passenger * passenger = new Passenger();
     string FirstName;

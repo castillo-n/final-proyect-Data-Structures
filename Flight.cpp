@@ -24,7 +24,7 @@ namespace Airline{
         distance = 0;
     }
 
-    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, string newIdentifier, int newDisttance){
+    Flight::Flight(string newDepCity, string newArrCity, string newDepDate, string newDepTime, string newArrDate, string newArrTime, string newIdentifier, int newDistance){
         depCity = newDepCity;
         arrCity = newArrCity;
         depDate = newDepDate;
@@ -92,11 +92,11 @@ namespace Airline{
     }
 
     void Flight::addPlane(Plane plane){
-        designatedPlane = plane;
+        *designatedPlane = plane;
     }
 
-    Plane Flight::getPlane(){
-        return designatedPlane;
+    Plane Flight::getPlane() const{
+        return *designatedPlane;
     }
 
     void Flight::createSeatMap() {
@@ -106,9 +106,10 @@ namespace Airline{
         int FirstClassRows = designatedPlane->getFirstClassRows();
         int col = designatedPlane->getColumns();
         double price = designatedPlane->getPrice();
+        int rows = designatedPlane->getRows();
 
         for(int i = 0; i < FirstClassRows; i++){
-            vector<Seat> FirstClassRow;
+            vector<Seat*> FirstClassRow;
             for(int j = 0; j < col; j++ ){
                 FirstClassRow.push_back(new FirstClass());
             }
@@ -116,7 +117,7 @@ namespace Airline{
         }
 
         for(int i = 0; i < EconPlusRows; i++){
-            vector<Seat> EconPlusRow;
+            vector<Seat*> EconPlusRow;
             for(int j = 0; j < col; j++ ){
                 EconPlusRow.push_back(new EconomyPlus());
             }
@@ -124,7 +125,7 @@ namespace Airline{
         }
 
         for(int i = 0; i < EconRows; i++){
-            vector<Seat> EconRow;
+            vector<Seat*> EconRow;
             for(int j = 0; j < col; j++ ){
                 EconRow.push_back(new Economy());
             }
@@ -132,7 +133,7 @@ namespace Airline{
         }
 
         for(int i = 0; i < rows; i++){
-            for (int j = 0; j < cols; j++){
+            for (int j = 0; j < col; j++){
                 seatMap[i][j]->setSeatAv('O');
                 seatMap[i][j]->setPrice(price);
                 seatMap[i][j]->setMiles(distance);
@@ -175,19 +176,20 @@ namespace Airline{
     }
 
     Seat Flight::getSeat(int row, int col) const {
-        return seatMap[row][col];
+        return *seatMap[row][col];
     }
 
-    void Flight::addPassenger(Passenger p){
-        passengerList->push_back(p);
+    void Flight::addPassenger(Passenger *p){
+        passengerList.push_back(p);
     }
 
-    Passenger Flight::getPassenger(string name){
-        for(vector<Passenger>::iterator it = passengerList.begin(); it != passengerList.end(); ++it) {
-            if (name == it->getName()) {
-                return *it;
+    Passenger Flight::getPassenger(string name) const{
+        for(int it = 0; it != passengerList.size(); ++it) {
+            if (name == passengerList[it]->getName()) {
+                return *passengerList[it];
             }
         }
+        return Passenger();
     }
 
     // don't know what this does

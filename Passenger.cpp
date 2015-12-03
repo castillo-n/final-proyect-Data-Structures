@@ -13,31 +13,29 @@ namespace Airline {
         return firstName + " " + lastName;
     }
 
-    Void Passenger::setName(string & fName, string & lName) const{
+    void Passenger::setName(string & fName, string & lName) {
         firstName = fName;
         lastName = lName;
     }
 
-    Void Passenger::setFirstName(string & fName) const{
+    void Passenger::setFirstName(string & fName) {
         firstName = fName;
     }
 
-    Void Passenger::setLastName(string & lName) const{
+    void Passenger::setLastName(string & lName) {
         lastName = lName;
     }
 
-    Itinerary Passenger::getItinerary(string flightIdentifier){
-        char id;
-        for(vector<Passenger>::iterator it = itineraryList.begin(); it != itineraryList.end(); ++it) {
-            if (id == it->getItinerary().getFlight().getIdentifier()) {
-                return *it->getItinerary().getFlight();
+    Itinerary Passenger::getItinerary(string flightIdentifier) const{
+        for( int it = 0; it != itineraryList.size(); ++it) {
+            if (flightIdentifier == itineraryList[it]->getFlight().getIdentifier()) {
+                return *itineraryList[it];
             }
         }
-        return 0;
+        return Itinerary();
     }
 
-    void Passenger::setItinerary(Itinerary &theItine) const{
-        numberOfItineraries++;
-        itinerary[numberOfItineraries] = theItine;
+    void Passenger::setItinerary(Itinerary * theItine) {
+        itineraryList.push_back(theItine);
     }
 }

@@ -25,7 +25,6 @@ namespace Airline {
         void setIdentifier(string const & newIdentifier); // sets the planes identification tag
         void setSeatPrice(double const & newPrice);
         double getPrice() const;
-        void setIdentifier(string const & newIdentifier); // sets the planes identification tag
         string getIdentifier() const; // gets the planes identification tag
     private:
         int columns; // contains the number of columns

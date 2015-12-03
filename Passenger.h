@@ -15,24 +15,25 @@ using namespace std;
 using std::vector;
 
 namespace Airline {
+    class Itinerary;
     class Passenger{
 
     public:
         Passenger();
         string getName() const;
-        Itinerary getItinerary(char flightIdentifier) const;
+        Itinerary getItinerary(string flightIdentifier) const;
 
-        void setItinerary(Itinerary &theItine) const;
-        void setName(string & fName, string & lName) const;
-        void setFirstName(string & fName) const;
-        void setLastName(string & lName) const;
+        void setItinerary(Itinerary * theItine);
+        void setName(string & fName, string & lName);
+        void setFirstName(string & fName) ;
+        void setLastName(string & lName) ;
 
     private:
         double balance;
         string firstName;
         string lastName;
         int numberOfItineraries;
-        vector<Itinerary> itineraryList;
+        vector<Itinerary * > itineraryList;
     };
 }
 
