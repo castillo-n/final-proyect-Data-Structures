@@ -3,6 +3,8 @@
 #include <string>
 #include <ctime>
 #include <cmath>
+#include <sys/types.h>
+#include <dirent.h>
 #include "Seat.h"
 #include "Plane.h"
 #include "Flight.h"
@@ -27,19 +29,110 @@ void printItinerary();
 void menu();
 
 
+string menuSelectorOpenNew();
+
 vector <Plane> Fleet;
 vector <Flight> FlightList;
 vector <Passenger> PassengerList;
 
 
-int main(){
-    Seat j;
+int main() {
+    int Option = 0;
+    bool checker = true;
+    int counter = 0;
+    string fileName;
+    string listOfFiles[1000];
+    cout << endl;
+    fileName = menuSelectorOpenNew();
+
+    while (checker) {
+        cout << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "                  Select an option from the following menu " << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "Select: " << endl;
+        cout << "       1_ Add a new plane to the fleet" << endl;
+        cout << "       2_ Add a new flight to the schedule" << endl;
+        cout << "       3_ Add a new passenger to the list of passengers" << endl;
+        cout << "       4_ Add a passenger to a flight" << endl;
+        cout << "       5_ Change the plane assigned to a flight" << endl;
+        cout << "       6_ Print the upcoming flights" << endl;
+        cout << "       7_ Print a list of passengers on a given flight" << endl;
+        cout << "       8_ Save current information" << endl;
+        cout << "       9_ Exit" << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "# >> ";
+        cin >> Option;
+        switch (Option)
+        {
+            case 1:
+                addNewPlane();
+                break;
+            case 2:
+                addNewFLight();
+                break;
+            case 3:
+                addNewPassenger();
+                break;
+            case 4:
+                addPassengerToFlight();
+                break;
+            case 5:
+                connectPlaneToFlight();
+                break;
+            case 6:
+                printFlights();
+                break;
+            case 7:
+                prinPassengerListOnFlight();
+                break;
+            case 8:
+                save(fileName);
+                break;
+            case 9:
+                checker = false;
+                break;
+            default:
+                cout << "The answer is not a valid answer, please try again" << endl;
+        }
+
+        cout << "--------------------------------------------------------------------------" << endl;
+
+    }
 }
-void connect(ifstream file){
+void connect(string fileName){
+
+    fstream inputStream;
+
+    inputStream.open(fileName);
+
+
+    if( !(inputStream.is_open()) ){
+        cout << "Sorry but the file: " << fileName <<" doesn't exist" << endl;
+    } else {
+        //read function call to add inputStream >> Fleet >> FlightList >> PassengerList >> endl;
+    }
+
+
+
+}
+void create(string fileSaveName){
+
+    ofstream savingStream;
+    savingStream.open(fileSaveName);
+    savingStream.close();
 
 }
 
-void save(ofstream file){
+void save(string fileSaveName){
+
+    ofstream savingStream;
+    savingStream.open(fileSaveName);
+
+//     savingStream << Fleet << FlightList << PassengerList << endl;
+    // fix this to make it work with proper saving syntax (not as an object)
+
+    savingStream.close();
 
 }
 
@@ -77,8 +170,8 @@ void addNewPlane(){
     Fleet.push_back(*plane);
 }
 
-void addNewFlight(){
-    Flight * flight = new Flight();
+void addNewFLight(){
+    Flight *flight = new Flight();
     string identifier;
     string DepCity;
     string DepDate;
@@ -237,4 +330,108 @@ int dateDifferenceToday(const int &year, const int &month, const int &day, const
     double days = minutes / 24;
 
     return static_cast<int>(floor(days));
+}
+
+
+string menuSelectorOpenNew(){
+    int counter = 0;
+    int Option = 0;
+    bool checker = true;
+    string fileName;
+    string listOfFiles[1000];
+    cout << "--------------------------------------------------------------------------" << endl;
+    cout << "--------------------- Thank you for using our program --------------------" << endl;
+    cout << "--------------------------------------------------------------------------" << endl;
+    cout << "------------------------- Flight reservation tool ------------------------" << endl;
+    cout << "--------------------------------------------------------------------------" << endl << endl;
+    cout << endl;
+
+    while (checker) {
+        cout << "--------------------------------------------------------------------------" << endl << endl;
+        cout << "                  Select an option from the following menu " << endl;
+        cout << "--------------------------------------------------------------------------" << endl;
+        cout << "Select: " << endl;
+        cout << "       1_ Open a saved file" << endl;
+        cout << "       2_ Create a new file" << endl;
+        cout << "# >> ";
+        cin >> Option;
+
+        if (Option == 1 || Option == 2) {
+
+            if (counter == 0) {
+                DIR *dir;
+                struct dirent *ent;
+                if ((dir = opendir(".")) != NULL) {
+                    /* print all the files and directories within directory */
+                    while ((ent = readdir(dir)) != NULL) {
+                        string nameOfThisFile = ent->d_name;
+                        if (nameOfThisFile.substr(nameOfThisFile.size() - 4, nameOfThisFile.size()) == ".pla") {
+                            listOfFiles[counter] = nameOfThisFile;
+                            counter++;
+                        }
+                    }
+                    closedir(dir);
+                }
+            }
+
+
+            if (Option == 1) {
+                if (counter == 0) {
+                    char a;
+                    cout << "Sorry, there are no .pla files in the directory" << endl;
+                    cout << "Would you like us to search again?" << endl;
+                    cout << "y or n >> ";
+                    cin >> a;
+                    if(a != 'y'){
+                        counter = -1;//there are no files so dont go there again to check for files
+                    }
+                } else if(counter>0){
+                    int n;
+                    cout << "--------------------------------------------------------------------------" << endl;
+                    cout << "Select one of the files from the following list" << endl;
+                    cout << "--------------------------------------------------------------------------" << endl;
+                    for(int i=0; i<listOfFiles->size(); i++){
+                        cout << (i + 1) << "_ " << listOfFiles[i] << endl;
+                    }
+                    cout << "# >> ";
+                    cin >> n;
+                    if(listOfFiles[n]!= ""){
+                        fileName = listOfFiles[n];
+                        checker = false;
+                        cout << "Opening " + fileName << endl;
+                        connect(fileName);
+                    }else{
+                        cout << "The option number was invalid, returning to previous menu. " << endl;
+                    }
+                    cout << "--------------------------------------------------------------------------" << endl;
+                }
+            } else {
+                string f;
+                cout << "--------------------------------------------------------------------------" << endl;
+                cout << "Type the name of the file";
+                cout << "--------------------------------------------------------------------------" << endl;
+                cin >> f;
+
+                if(f != ""){
+                    if(f.substr(f.size() - 4, f.size()) == ".pla") {
+                        fileName = f;
+                    }else{
+                        fileName = f + ".pla";
+                    }
+                    checker = false;
+                    cout << "Creating " + fileName << endl;
+                    create(fileName);
+                }else{
+                    cout << "The file name was invalid, returning to previous menu. " << endl;
+                }
+
+            }
+
+
+        }else {
+            cout << "The # option was invalid, try again. " << endl;
+        }
+
+    }
+    return fileName;
 }

@@ -193,16 +193,15 @@ namespace Airline{
 
     Passenger Flight::getAPassenger(string name) const{
         for(int it = 0; it != passengerList.size(); ++it) {
-            if (name == passengerList[it]->getName()) {
-                return *passengerList[it];
+            if (name == passengerList[it].getName()) {
+                return passengerList[it];
             }
         }
         return Passenger();
     }
 
-<<<<<<< Updated upstream
     Passenger Flight::getPassenger(int i) const {
-        return *passengerList[i];
+        return passengerList[i];
     }
 
     int Flight::numOfPassengers() const {
@@ -234,6 +233,4 @@ namespace Airline{
 
         return static_cast<int>(floor(days));
     }*/
-=======
->>>>>>> Stashed changes
 }

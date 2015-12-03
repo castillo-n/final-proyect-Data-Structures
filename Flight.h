@@ -63,7 +63,7 @@ namespace Airline {
         string identifier;
         Plane * designatedPlane;
         vector< vector<Seat *> > seatMap;
-        vector<Passenger *> passengerList;
+        vector<Passenger> passengerList;
     };
 }
 
