@@ -196,7 +196,7 @@ void printFlights(){
 
 void prinPassengerListOnFlight(){
     string identifier;
-    int index;
+    int index=0;
     Passenger p;
 
     cout << "Enter The Flight's Tag: ";
