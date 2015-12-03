@@ -116,6 +116,7 @@ void connect(string fileName){
 
 
 }
+
 void create(string fileSaveName){
 
     ofstream savingStream;
@@ -129,8 +130,36 @@ void save(string fileSaveName){
     ofstream savingStream;
     savingStream.open(fileSaveName);
 
-//     savingStream << Fleet << FlightList << PassengerList << endl;
-    // fix this to make it work with proper saving syntax (not as an object)
+    for(int i = 0; i < Fleet.size(); i++){
+        savingStream << Fleet[i].getIdentifier() << " ";
+        savingStream << Fleet[i].getRows() << " ";
+        savingStream << Fleet[i].getColumns() << " ";
+        savingStream << Fleet[i].getEconRows() << " ";
+        savingStream << Fleet[i].getEconPlusRows() << " ";
+        savingStream << Fleet[i].getFirstClassRows() << " ";
+        savingStream << Fleet[i].getPrice() << " " << endl;
+    }
+
+    for(int i = 0; i < PassengerList.size(); i++){
+        savingStream << PassengerList[i].getName();
+    }
+
+        savingStream << endl;
+
+    for(int i = 0; i < FlightList.size(); i++){
+        savingStream << FlightList[i].getIdentifier() << " ";
+        savingStream << FlightList[i].getDepCity() << " ";
+        savingStream << FlightList[i].getDepDate() << " ";
+        savingStream << FlightList[i].getDepTime() << " ";
+        savingStream << FlightList[i].getArrCity() << " ";
+        savingStream << FlightList[i].getArrDate() << " ";
+        savingStream << FlightList[i].getArrTime() << " ";
+        savingStream << endl;
+        for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
+            savingStream << FlightList[i].getPassenger(j).getName() << endl;
+        }
+
+    }
 
     savingStream.close();
 
