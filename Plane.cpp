@@ -75,24 +75,16 @@ namespace Airline {
         return firstClassRows;
     }
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    void Plane::setIdentifier(string & newIdentifier) const{
-=======
->>>>>>> Stashed changes
-    void Plane::setSeatPrice(double newPrice) {
+    void Plane::setIdentifier(string & newIdentifier) const {
+        identifier = newIdentifier;
+    }
+
+    void Plane::setSeatPrice(double & newPrice) const{
         price = newPrice;
     }
 
     double Plane::getPrice() const {
         return price;
-    }
-
-    void Plane::setIdentifier(string newIdentifier) {
->>>>>>> origin/master
-        identifier = newIdentifier;
-        
     }
 
     string Plane::getIdentifier() const {

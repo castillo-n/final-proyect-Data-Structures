@@ -22,16 +22,10 @@ namespace Airline {
         int getEconPlusRows() const;
         void setFirstClassRows(int & newFirstClassRows) const;
         int getFirstClassRows() const;
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
         void setIdentifier(string & newIdentifier) const; // sets the planes identification tag
-=======
->>>>>>> Stashed changes
         void setSeatPrice(double newPrice);
         double getPrice() const;
         void setIdentifier(string newIdentifier); // sets the planes identification tag
->>>>>>> origin/master
         string getIdentifier() const; // gets the planes identification tag
     private:
         int columns; // contains the number of columns
