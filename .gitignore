@@ -36,3 +36,13 @@ FlightProgram/Build/Intermediates/FlightProgram.build/Debug/FlightProgram.build/
 *.xml
 
 *.iml
+
+.idea/workspace.xml
+
+*.xml
+
+Plane.cpp
+
+Passenger.h
+
+main.cpp

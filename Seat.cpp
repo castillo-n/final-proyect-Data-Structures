@@ -33,7 +33,7 @@ namespace Airline {
             seatAv = newSeatAv;
         }
 
-        char Seat::getSeatAv(){
+        char Seat::getSeatAv() const{
             return seatAv;
         }
 
