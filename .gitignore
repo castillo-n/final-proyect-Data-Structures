@@ -32,3 +32,7 @@ FlightProgram/Build/Intermediates/FlightProgram.build/Debug/FlightProgram.build/
 .idea/cs3528finalprogram.iml
 
 .idea/misc.xml
+
+*.xml
+
+*.iml

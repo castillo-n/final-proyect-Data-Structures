@@ -17,6 +17,7 @@ using std::vector;
 
 namespace Airline {
     class Passenger{
+        
     public:
         Passenger();
         string getName() const;
