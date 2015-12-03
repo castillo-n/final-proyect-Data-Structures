@@ -12,6 +12,10 @@ namespace Airline {
     Plane::Plane() {
         columns = 0;
         rows = 0;
+        econRows = 0;
+        econPlusRows = 0;
+        firstClassRows = 0;
+        price = 0;
         identifier = "";
         
     }
@@ -69,6 +73,14 @@ namespace Airline {
 
     int Plane::getFirstClassRows() const {
         return firstClassRows;
+    }
+
+    void Plane::setSeatPrice(double newPrice) {
+        price = newPrice;
+    }
+
+    double Plane::getPrice() const {
+        return price;
     }
 
     void Plane::setIdentifier(string newIdentifier) {

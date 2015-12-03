@@ -22,6 +22,8 @@ namespace Airline {
         int getEconPlusRows() const;
         void setFirstClassRows(int newFirstClassRows);
         int getFirstClassRows() const;
+        void setSeatPrice(double newPrice);
+        double getPrice() const;
         void setIdentifier(string newIdentifier); // sets the planes identification tag
         string getIdentifier() const; // gets the planes identification tag
     private:
@@ -30,6 +32,7 @@ namespace Airline {
         int econRows;
         int econPlusRows;
         int firstClassRows;
+        double price;
         string identifier; // contains the identification tag of the plane
     };
 }

@@ -105,6 +105,7 @@ namespace Airline{
         int EconPlusRows = designatedPlane->getEconPlusRows();
         int FirstClassRows = designatedPlane->getFirstClassRows();
         int col = designatedPlane->getColumns();
+        double price = designatedPlane->getPrice();
 
         for(int i = 0; i < FirstClassRows; i++){
             vector<Seat> FirstClassRow;
@@ -128,6 +129,14 @@ namespace Airline{
                 EconRow.push_back(new Economy());
             }
             seatMap.push_back(EconRow);
+        }
+
+        for(int i = 0; i < rows; i++){
+            for (int j = 0; j < cols; j++){
+                seatMap[i][j]->setSeatAv('O');
+                seatMap[i][j]->setPrice(price);
+                seatMap[i][j]->setMiles(distance);
+            }
         }
     }
 

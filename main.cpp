@@ -16,9 +16,10 @@ void addPlane();
 void addFLight();
 void addPassenger();
 void connectPlaneToFlight();
-void getPlaneInfo(int index);
-void getFlightInfo(int index);
-void getPassengerInfo(int index);
+void setUpFlights();
+void getPlaneInfo();
+void getFlightInfo();
+void getPassengerInfo();
 void purchaseSeat();
 void printItinerary();
 void menu();
@@ -78,6 +79,7 @@ void addPlane(){
     int numEcRows;
     int cols;
     int rows;
+    double price;
 
     cout << "Enter the Plane's Tag: ";
     cin >> identifier;
@@ -96,6 +98,9 @@ void addPlane(){
     cout << "Enter the number of Economy Rows: ";
     cin >> numEcRows;
     plane->setEconRows(numEcRows);
+    cout << "Enter the Base Price of the Seat: ";
+    cin >> price;
+    plane->setSeatPrice(price);
 
     Fleet.push_back(*plane);
 }
@@ -123,10 +128,18 @@ void addFlight(){
     cout << "Enter the Departure Time: ";
     cin >> DepTime;
     flight->setDepTime(DepTime);
-
-
-
-
+    cout << "Enter the Arrival City: ";
+    cin >> ArrCity;
+    flight->setArrCity(ArrCity);
+    cout << "Enter the Arrival Date: ";
+    cin >> ArrDate;
+    flight->setArrDate(ArrDate);
+    cout << "Enter the Arrival Time: ";
+    cin >> ArrTime;
+    flight->setArrTime(ArrTime);
+    cout << "Enter the distance in miles of the Flight: ";
+    cin >> distance;
+    flight->setDistance(distance);
 
     FlightList.push_back(*flight);
 }
@@ -148,4 +161,18 @@ void addPassenger(){
 
 void connectPlaneToFlight(){
 
+    for(int i = 0; i < FlightList.size(); i++){
+        for(int j = 0; j < Fleet.size(); j++){
+            if(FlightList[i].getIdentifier() == Fleet[j].getIdentifier()){
+                FlightList[i].addPlane(Fleet[j]);
+            }
+        }
+    }
 }
+
+void setUpFlights(){
+    for(int i = 0; i < FlightList.size(); i++){
+        FlightList[i].createSeatMap();
+    }
+}
+

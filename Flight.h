@@ -39,7 +39,7 @@ namespace Airline {
         string getIdentifier() const;
         void setDistance(int newDistance);
         int getDistance() const;
-        void addPlane(Plane plane, int i);
+        void addPlane(Plane plane);
         Plane getPlane() const;
         void createSeatMap();
         void displaySeatMap();
