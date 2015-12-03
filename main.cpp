@@ -12,14 +12,14 @@ using namespace Airline;
 
 void connect(ifstream file);
 void save(ofstream file);
-void addPlane();
-void addFLight();
-void addPassenger();
+void addNewPlane();
+void addNewFLight();
+void addNewPassenger();
 void connectPlaneToFlight();
 void setUpFlights();
-void getPlaneInfo();
-void getFlightInfo();
-void getPassengerInfo();
+void addPassengerToFlight();
+void printFlights();
+void prinPassengerListOnFlight();
 void purchaseSeat();
 void printItinerary();
 void menu();
@@ -41,7 +41,7 @@ void save(ofstream file){
 
 }
 
-void addPlane(){
+void addNewPlane(){
     Plane * plane = new Plane();
     string identifier;
     int numFCROws;
@@ -75,7 +75,7 @@ void addPlane(){
     Fleet.push_back(*plane);
 }
 
-void addFlight(){
+void addNewFlight(){
     Flight * flight = new Flight();
     string identifier;
     string DepCity;
@@ -113,7 +113,7 @@ void addFlight(){
 
     FlightList.push_back(*flight);
 }
-void addPassenger(){
+void addNewPassenger(){
     Passenger * passenger = new Passenger();
     string FirstName;
     string LastName;
@@ -145,19 +145,72 @@ void setUpFlights(){
     }
 }
 
-void getPlaneInfo(){
+void addPassengerToFlight(){
 
     string identifier;
-    Plane plane;
+    string first;
+    string last;
+    string name;
 
-    cout << "Enter the Plane's Tag: ";
+    int indexFlight;
+    int indexPassenger;
+
+    cout << "Enter the Flight's Tag: ";
     cin >> identifier;
 
-    for(int i = 0; i < Fleet.size(); i++){
-        if(Fleet[i].getIdentifier() == identifier){
-
+    for(int i = 0; i < FlightList.size(); i++){
+        if(FlightList[i].getIdentifier() == identifier){
+            indexFlight = i;
         }
     }
 
+    cout << "Enter the Paassenger's First Name: ";
+    cin >> first;
+    cout << "Enter the Paassenger's Last Name: ";
+    cin >> last;
+
+    name = first + " " + last;
+
+    for(int i = 0; i < PassengerList.size(); i++){
+        if(PassengerList[i].getName() == name){
+            indexPassenger = i;
+        }
+    }
+
+    FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
+}
+
+void printFlights(){
+    for(int i = 0; i < FlightList.size(); i++){
+        cout << "Flight: " << FlightList[i].getIdentifier() << endl;
+        cout << "Departing City: " << FlightList[i].getDepCity() << endl;
+        cout << "Departure Date: " << FlightList[i].getDepDate() << endl;
+        cout << "Departure Time: " << FlightList[i].getDepTime() << endl;
+        cout << "Arriving City: " << FlightList[i].getArrCity() << endl;
+        cout << "Arrival Date: " << FlightList[i].getArrDate() << endl;
+        cout << "Arrival Time: " << FlightList[i].getArrTime() << endl << endl;
+    }
+}
+
+void prinPassengerListOnFlight(){
+    string identifier;
+    int index;
+    Passenger p;
+
+    cout << "Enter The Flight's Tag: ";
+    cin >> identifier;
+
+    for(int i = 0; i < FlightList.size(); i++) {
+        if(identifier == FlightList[i].getIdentifier()){
+            index = i;
+        }
+    }
+
+    cout << "Flight: " << FlightList[index].getIdentifier();
+
+    for(int i = 0; i < FlightList[index].numOfPassengers(); i++){
+        p = FlightList[index].getPassenger(i);
+        cout << i << ": " << p.getName() << endl;
+    }
 
 }

@@ -187,17 +187,25 @@ namespace Airline{
         return *seatMap[row][col];
     }
 
-    void Flight::addPassenger(Passenger *p){
+    void Flight::addPassenger(Passenger p){
         passengerList.push_back(p);
     }
 
-    Passenger Flight::getPassenger(string name) const{
+    Passenger Flight::getAPassenger(string name) const{
         for(int it = 0; it != passengerList.size(); ++it) {
             if (name == passengerList[it]->getName()) {
                 return *passengerList[it];
             }
         }
         return Passenger();
+    }
+
+    Passenger Flight::getPassenger(int i) const {
+        return *passengerList[i];
+    }
+
+    int Flight::numOfPassengers() const {
+        return passengerList.size();
     }
 
     // don't know what this does

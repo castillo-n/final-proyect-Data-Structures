@@ -46,8 +46,10 @@ namespace Airline {
         void clearSeatMap();
         void occupySeat(int row, int col);
         Seat getSeat(int row, int col) const;
-        void addPassenger(Passenger *p);
-        Passenger getPassenger(string name) const;
+        void addPassenger(Passenger p);
+        Passenger getAPassenger(string name) const;
+        Passenger getPassenger(int i) const;
+        int numOfPassengers() const;
         int dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute);
 
     private:
