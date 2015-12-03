@@ -27,7 +27,7 @@ namespace Airline {
         
     }
 
-    void Plane::setColumns(int & newColumns) const{
+    void Plane::setColumns(int const & newColumns ){
         columns = newColumns;
         
     }
@@ -37,7 +37,7 @@ namespace Airline {
         
     }
 
-    void Plane::setRows(int & newRows) const{
+    void Plane::setRows(int const & newRows){
         rows = newRows;
         
     }
@@ -47,7 +47,7 @@ namespace Airline {
         
     }
 
-    void Plane::setEconRows(int & newEconRows) const{
+    void Plane::setEconRows(int const & newEconRows){
         econRows = newEconRows;
         
     }
@@ -57,7 +57,7 @@ namespace Airline {
         
     }
 
-    void Plane::setEconPlusRows(int & newEconPlusRows) const{
+    void Plane::setEconPlusRows(int const & newEconPlusRows){
         econPlusRows = newEconPlusRows;
         
     }
@@ -67,7 +67,7 @@ namespace Airline {
         
     }
 
-    void Plane::setFirstClassRows(int & newFirstClassRows) const{
+    void Plane::setFirstClassRows(int const & newFirstClassRows){
         firstClassRows = newFirstClassRows;
     }
 
@@ -75,11 +75,11 @@ namespace Airline {
         return firstClassRows;
     }
 
-    void Plane::setIdentifier(string & newIdentifier) const {
+    void Plane::setIdentifier(string const & newIdentifier) {
         identifier = newIdentifier;
     }
 
-    void Plane::setSeatPrice(double & newPrice) const{
+    void Plane::setSeatPrice(double const & newPrice){
         price = newPrice;
     }
 
