@@ -23,7 +23,7 @@ void getPassengerInfo();
 void purchaseSeat();
 void printItinerary();
 void menu();
-//
+
 
 vector <Plane> Fleet;
 vector <Flight> FlightList;
@@ -31,7 +31,7 @@ vector <Passenger> PassengerList;
 
 
 int main(){
-    Airline::Itinerary i;
+
 }
 void connect(ifstream file){
 

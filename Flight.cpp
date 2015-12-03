@@ -91,6 +91,14 @@ namespace Airline{
         return identifier;
     }
 
+    void Flight::setDistance(int newDistance) {
+        distance = newDistance;
+    }
+
+    int Flight::getDistance() const {
+        return distance;
+    }
+
     void Flight::addPlane(Plane plane){
         *designatedPlane = plane;
     }
