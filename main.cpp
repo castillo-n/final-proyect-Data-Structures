@@ -14,8 +14,9 @@
 using namespace std;
 using namespace Airline;
 
-void connect(ifstream file);
-void save(ofstream file);
+void connect(string fileSaveName);
+void create(string fileSaveName);
+void save(string fileSaveName);
 void addNewPlane();
 void addNewFLight();
 void addNewPassenger();
@@ -23,7 +24,7 @@ void connectPlaneToFlight();
 void setUpFlights();
 void addPassengerToFlight();
 void printFlights();
-void prinPassengerListOnFlight();
+void printPassengerListOnFlight();
 void purchaseSeat();
 void printItinerary();
 void menu();
@@ -84,7 +85,7 @@ int main() {
                 printFlights();
                 break;
             case 7:
-                prinPassengerListOnFlight();
+                printPassengerListOnFlight();
                 break;
             case 8:
                 save(fileName);
@@ -100,15 +101,15 @@ int main() {
 
     }
 }
-void connect(string fileName){
+void connect(string fileSaveName){
 
     fstream inputStream;
 
-    inputStream.open(fileName);
+    inputStream.open(fileSaveName);
 
 
     if( !(inputStream.is_open()) ){
-        cout << "Sorry but the file: " << fileName <<" doesn't exist" << endl;
+        cout << "Sorry but the file: " << fileSaveName <<" doesn't exist" << endl;
     } else {
         //read function call to add inputStream >> Fleet >> FlightList >> PassengerList >> endl;
     }
@@ -316,7 +317,7 @@ void printFlights(){
     }
 }
 
-void prinPassengerListOnFlight(){
+void printPassengerListOnFlight(){
     string identifier;
     int index=0;
     Passenger p;
@@ -394,13 +395,18 @@ string menuSelectorOpenNew(){
                     /* print all the files and directories within directory */
                     while ((ent = readdir(dir)) != NULL) {
                         string nameOfThisFile = ent->d_name;
-                        if (nameOfThisFile.substr(nameOfThisFile.size() - 4, nameOfThisFile.size()) == ".pla") {
+//                        cout << nameOfThisFile <<endl;
+//                        cout << nameOfThisFile.substr(nameOfThisFile.length()-5, nameOfThisFile.length()) << endl;
+                        if (nameOfThisFile.length() > 5 && nameOfThisFile.substr(nameOfThisFile.length() - 4, nameOfThisFile.length()) == ".pla") {
                             listOfFiles[counter] = nameOfThisFile;
                             counter++;
+
+//                            cout << nameOfThisFile.substr((nameOfThisFile.length()-4), nameOfThisFile.length()) << endl;
                         }
                     }
-                    closedir(dir);
                 }
+                    closedir(dir);
+                    cout << "Here" << endl;
             }
 
 
@@ -411,8 +417,14 @@ string menuSelectorOpenNew(){
                     cout << "Would you like us to search again?" << endl;
                     cout << "y or n >> ";
                     cin >> a;
-                    if(a != 'y'){
-                        counter = -1;//there are no files so dont go there again to check for files
+                    if(a == 'y' || a == 'Y'){
+                        counter = 0;//there are no files so dont go there again to check for files
+                    }else if( a != 'n' || a != 'N'){
+                        counter = -1;
+                    }else{
+                        if(counter == 0){
+                            counter =-1;
+                        }
                     }
                 } else if(counter>0){
                     int n;
@@ -437,7 +449,7 @@ string menuSelectorOpenNew(){
             } else {
                 string f;
                 cout << "--------------------------------------------------------------------------" << endl;
-                cout << "Type the name of the file";
+                cout << "Type the name of the file" << endl;
                 cout << "--------------------------------------------------------------------------" << endl;
                 cin >> f;
 
