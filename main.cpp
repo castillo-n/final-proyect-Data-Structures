@@ -406,7 +406,6 @@ string menuSelectorOpenNew(){
                     }
                 }
                     closedir(dir);
-                    cout << "Here" << endl;
             }
 
 
@@ -451,10 +450,11 @@ string menuSelectorOpenNew(){
                 cout << "--------------------------------------------------------------------------" << endl;
                 cout << "Type the name of the file" << endl;
                 cout << "--------------------------------------------------------------------------" << endl;
+                cout << "name >> ";
                 cin >> f;
 
                 if(f != ""){
-                    if(f.substr(f.size() - 4, f.size()) == ".pla") {
+                    if(f.substr(f.length() - 4, f.length()) == ".pla") {
                         fileName = f;
                     }else{
                         fileName = f + ".pla";
