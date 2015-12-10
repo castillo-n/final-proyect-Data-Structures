@@ -70,7 +70,7 @@ namespace Airline{
 
     void Flight::setDepDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm) {
         bool a = false;
-        if (year > 2015 && month < 2025) { // at this time they should pay us to make an upgrade :)
+        if (year > 2014 && month < 2025) { // at this time they should pay us to make an upgrade :)
             if (month > 0 && month < 13) {
                 depDateMonth = month;
                 if (day > 0 && day <
