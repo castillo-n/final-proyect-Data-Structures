@@ -29,7 +29,9 @@ void purchaseSeat();
 void removeOldFlights();
 void printItinerary();
 void menu();
-
+void lineToFleet(string line);
+void lineToPassenger(string line);
+void lineToFlights(string line);
 
 void menuSelectorOpenNew();
 string fileName;
@@ -116,13 +118,85 @@ void connect(){
 
         ifstream openingStream;
         openingStream.open(fileName);
-
-
+        string line_;
+        bool fleet_ = false;
+        bool pass_ = false;
+        bool flight_ = false;
+        while (true) {
+            openingStream >> line_;
+            if( openingStream.eof() ) {break;}
+            if(line_ == "FLEET"){//if fleet start putting data there
+                fleet_ = true;
+                pass_ = false;
+                flight_ = false;
+            }else if(line_ == "PASSENGERS"){ //else if passenger put it there
+                fleet_ = false;
+                pass_ = true;
+                flight_ = false;
+            }else if(line_ == "FLIGHTS"){ /// else if flights put it there
+                fleet_ = false;
+                pass_ = false;
+                flight_ = true;
+            }
+            if(fleet_){lineToFleet(line_);}
+            else if(pass_){lineToPassenger(line_);}
+            else if(flight_){lineToFlights(line_);}
+        }
         //get fleet
-
     }
+}
+void lineToFleet(string line){
+    string id, rows, cols, econRow, plusRow, firstRow, price;
+    int check = 0;
+    for(int i = 0; i < line.length(); i++){
+        if(line[i] == ' '){
+            check++;
+        }
+        else if(check == 0){
+            id +=line[i];
+        }
+        else if(check == 1){
+            rows +=line[i];
+        }
+        else if(check == 2){
+            cols +=line[i];
+        }
+        else if(check == 3){
+            econRow +=line[i];
+        }
+        else if(check == 4){
+            plusRow +=line[i];
+        }
+        else if(check == 5){
+            firstRow +=line[i];
+        }
+        else if(check == 6){
+            price +=line[i];
+        }
+    }
+//
+//    int columns; // contains the number of columns
+//    int rows; // contains the number or rows
+//    int econRows;
+//    int econPlusRows;
+//    int firstClassRows;
+//    double price;
+//    string identifier; // contains the identification tag of the plane
+    Plane newPlane = Plane();
+    newPlane.setColumns(stoi(cols));
+    newPlane.setEconPlusRows(stoi(plusRow));
+    newPlane.setEconRows(stoi(econRow));
+    newPlane.setFirstClassRows(stoi(firstRow));
+    newPlane.setIdentifier(id);
+    newPlane.setRows(stoi(econRow));
+    newPlane.setSeatPrice(stod(price));
+    Fleet.push_back(newPlane);
 
+}
+void lineToPassenger(string line){
 
+}
+void lineToFlights(string line){
 
 }
 
