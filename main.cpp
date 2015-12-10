@@ -26,6 +26,7 @@ void addPassengerToFlight();
 void printFlights();
 void printPassengerListOnFlight();
 void purchaseSeat();
+void removeOldFlights();
 void printItinerary();
 void menu();
 
@@ -304,6 +305,42 @@ void addPassengerToFlight(){
 
     FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
 }
+
+void purchaseSeat(){
+    string identifier;
+    Flight flight;
+    Seat seat;
+    int row;
+    int col;
+
+    cout << "Enter the Flight's Tag: ";
+    cin >> identifier;
+
+    for(int i = 0; i < FlightList.size(); i++){
+        if(FlightList[i].getIdentifier() == identifier){
+            flight = FlightList[i];
+        }
+    }
+
+    flight.displaySeatMap();
+
+    cout << "Enter the Seat Row: ";
+    cin >> row;
+    cout << "Enter the seat Col: ";
+    cin >> col;
+
+    seat = flight.getSeat(row, col);
+    flight.occupySeat(row, col);
+
+    //needs to get current date and calculate price for when the passenger purchased the seat
+    //seat.setNumDays();
+
+    cout << "Your seat has been purchased." << endl
+         << "Balance: $" << seat.CalculatePrice();
+
+}
+
+
 
 void printFlights(){
     for(int i = 0; i < FlightList.size(); i++){
