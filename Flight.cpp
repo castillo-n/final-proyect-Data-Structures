@@ -86,27 +86,27 @@ namespace Airline{
                                 depTime = to_string(month) + "/" + to_string(month) + "/" + to_string(month) + "/" +
                                           to_string(month) + ":" + to_string(month) + " " + amPm;
                             } else {
-                                cout << "wrong time stamp" << endl;
+//                                cout << "wrong time stamp" << endl;
                                 a = true;
                             }
                         } else {
-                            cout << "wrong minutes" << endl;
+//                            cout << "wrong minutes" << endl;
                             a = true;
                         }
                     } else {
-                        cout << "wrong minutes" << endl;
+//                        cout << "wrong minutes" << endl;
                         a = true;
                     }
                 } else {
-                    cout << "wrong day" << endl;
+//                    cout << "wrong day" << endl;
                     a = true;
                 }
             } else {
-                cout << "wrong month" << endl;
+//                cout << "wrong month" << endl;
                 a = true;
             }
         } else {
-            cout << "wrong year" << endl;
+//            cout << "wrong year" << endl;
             a = true;
         }
         if (a) {
