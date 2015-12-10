@@ -10,6 +10,7 @@
 #include "EconomyPlus.h"
 #include "FirstClass.h"
 #include <string>
+#include <math.h>
 
 namespace Airline{
 
@@ -51,10 +52,10 @@ namespace Airline{
         return arrCity;
     }
 
-    void Flight::setDepDate(string newDepDate){
-        depDate = newDepDate;
-    }
-
+//    void Flight::setDepDate(string newDepDate){
+//        depDate = newDepDate;
+//    }
+//
     string Flight::getDepDate() const{
         return depDate;
     }
@@ -67,8 +68,50 @@ namespace Airline{
         return arrDate;
     }
 
-    void Flight::setDepTime(string newDepTime){
-        depTime = newDepTime;
+    void Flight::setDepDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm) {
+        bool a = false;
+        if (year > 2015 && month < 2025) { // at this time they should pay us to make an upgrade :)
+            if (month > 0 && month < 13) {
+                depDateMonth = month;
+                if (day > 0 && day <
+                               32) { // we could be more specific and check fo year and month to check for 2/29 instead of 2/28 or for the mothns with 30 days instead of 31
+                    depDateDay = day;
+                    if (hour > -1 && hour < 13) {
+                        depDateHour = min;
+                        if (min > -1 && min < 60) {
+                            depDateMin = min;
+                            if (amPm == "AM" || amPm == "Am" || amPm == "am" || amPm == "PM" || amPm == "Pm" ||
+                                amPm == "pm") {
+                                depDateAmPm = amPm;
+                                depTime = to_string(month) + "/" + to_string(month) + "/" + to_string(month) + "/" +
+                                          to_string(month) + ":" + to_string(month) + " " + amPm;
+                            } else {
+                                cout << "wrong time stamp" << endl;
+                                a = true;
+                            }
+                        } else {
+                            cout << "wrong minutes" << endl;
+                            a = true;
+                        }
+                    } else {
+                        cout << "wrong minutes" << endl;
+                        a = true;
+                    }
+                } else {
+                    cout << "wrong day" << endl;
+                    a = true;
+                }
+            } else {
+                cout << "wrong month" << endl;
+                a = true;
+            }
+        } else {
+            cout << "wrong year" << endl;
+            a = true;
+        }
+        if (a) {
+            depTime ="";
+        }
     }
 
     string Flight::getDepTime() const{
@@ -208,22 +251,20 @@ namespace Airline{
         return passengerList.size();
     }
 
-    // don't know what this does
-    /*int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
-=======
     // don't know what this does 
     // this returns the difference between the date of today and the freaking flight date :) -Nelson
-    int Flight::dateDifferenceToday(const int &year, const int &month, const int &day, const int &hour, const int &minute) {
->>>>>>> origin/master
+    int Flight::amountOfDaysTo() const{
         time_t timer;
         int second = 0;
         struct tm userTime = {0};
         double seconds;
-        userTime.tm_year = year - 1900;//0 is 1900
-        userTime.tm_mon = month - 1; //jan is 0
-        userTime.tm_mday = day;
-        userTime.tm_hour = hour;
-        userTime.tm_min = minute;
+
+
+        userTime.tm_year = depDateYear - 1900;//0 is 1900
+        userTime.tm_mon = depDateMonth - 1; //jan is 0
+        userTime.tm_mday = depDateDay;
+        userTime.tm_hour = depDateHour;
+        userTime.tm_min = depDateMin;
         userTime.tm_sec = second;
         time_t now = time(0);
         seconds = difftime(now, mktime(&userTime));
@@ -232,5 +273,5 @@ namespace Airline{
         double days = minutes / 24;
 
         return static_cast<int>(floor(days));
-    }*/
+    }
 }
