@@ -14,9 +14,9 @@
 using namespace std;
 using namespace Airline;
 
-void connect(string fileSaveName);
-void create(string fileSaveName);
-void save(string fileSaveName);
+void connect();
+void create();
+void save();
 void addNewPlane();
 void addNewFLight();
 void addNewPassenger();
@@ -31,8 +31,8 @@ void printItinerary();
 void menu();
 
 
-string menuSelectorOpenNew();
-
+void menuSelectorOpenNew();
+string fileName;
 vector <Plane> Fleet;
 vector <Flight> FlightList;
 vector <Passenger> PassengerList;
@@ -45,7 +45,7 @@ int main() {
     string fileName;
     string listOfFiles[1000];
     cout << endl;
-    fileName = menuSelectorOpenNew();
+    menuSelectorOpenNew();
 
     while (checker) {
         cout << endl;
@@ -89,7 +89,7 @@ int main() {
                 printPassengerListOnFlight();
                 break;
             case 8:
-                save(fileName);
+                save();
                 break;
             case 9:
                 checker = false;
@@ -102,52 +102,61 @@ int main() {
 
     }
 }
-void connect(string fileSaveName){
+void connect(){
 
     fstream inputStream;
 
-    inputStream.open(fileSaveName);
+    inputStream.open(fileName);
 
 
     if( !(inputStream.is_open()) ){
-        cout << "Sorry but the file: " << fileSaveName <<" doesn't exist" << endl;
+        cout << "Sorry but the file: " << fileName <<" doesn't exist" << endl;
     } else {
         //read function call to add inputStream >> Fleet >> FlightList >> PassengerList >> endl;
+
+        ifstream openingStream;
+        openingStream.open(fileName);
+
+
+        //get fleet
+
     }
 
 
 
 }
 
-void create(string fileSaveName){
+void create(){
 
     ofstream savingStream;
-    savingStream.open(fileSaveName);
+    savingStream.open(fileName);
     savingStream.close();
 
 }
 
-void save(string fileSaveName){
+void save(){
 
     ofstream savingStream;
-    savingStream.open(fileSaveName);
-
+    savingStream.open(fileName);
+    savingStream << "FLEET" << endl;
     for(int i = 0; i < Fleet.size(); i++){
-        savingStream << Fleet[i].getIdentifier() << " ";
-        savingStream << Fleet[i].getRows() << " ";
-        savingStream << Fleet[i].getColumns() << " ";
-        savingStream << Fleet[i].getEconRows() << " ";
-        savingStream << Fleet[i].getEconPlusRows() << " ";
-        savingStream << Fleet[i].getFirstClassRows() << " ";
-        savingStream << Fleet[i].getPrice() << " " << endl;
+        savingStream << Fleet[i].getIdentifier() << " "
+        << Fleet[i].getRows() << " "
+        << Fleet[i].getColumns() << " "
+        << Fleet[i].getEconRows() << " "
+        << Fleet[i].getEconPlusRows() << " "
+        << Fleet[i].getFirstClassRows() << " "
+        << Fleet[i].getPrice() << " " << endl;
     }
 
+    savingStream << "PASSENGERS" << endl;
     for(int i = 0; i < PassengerList.size(); i++){
         savingStream << PassengerList[i].getName();
     }
 
         savingStream << endl;
 
+    savingStream << "FLIGHTS" << endl;
     for(int i = 0; i < FlightList.size(); i++){
         savingStream
             << FlightList[i].getIdentifier() << " "
@@ -307,9 +316,9 @@ void addPassengerToFlight(){
         }
     }
 
-    cout << "Enter the Paassenger's First Name: ";
+    cout << "Enter the Passenger's First Name: ";
     cin >> first;
-    cout << "Enter the Paassenger's Last Name: ";
+    cout << "Enter the Passenger's Last Name: ";
     cin >> last;
 
     name = first + " " + last;
@@ -417,11 +426,10 @@ int dateDifferenceToday(const int &year, const int &month, const int &day, const
 }
 
 
-string menuSelectorOpenNew(){
+void menuSelectorOpenNew(){
     int counter = 0;
     int Option = 0;
     bool checker = true;
-    string fileName;
     string listOfFiles[1000];
     cout << "--------------------------------------------------------------------------" << endl;
     cout << "--------------------- Thank you for using our program --------------------" << endl;
@@ -495,7 +503,7 @@ string menuSelectorOpenNew(){
                         fileName = listOfFiles[n - 1];
                         checker = false;
                         cout << "Opening " + fileName << endl;
-                        connect(fileName);
+                        connect();
                     }else{
                         cout << "The option number was invalid, returning to previous menu. " << endl;
                     }
@@ -517,7 +525,7 @@ string menuSelectorOpenNew(){
                     }
                     checker = false;
                     cout << "Creating " + fileName << endl;
-                    create(fileName);
+                    create();
                 }else{
                     cout << "The file name was invalid, returning to previous menu. " << endl;
                 }
@@ -530,5 +538,4 @@ string menuSelectorOpenNew(){
         }
 
     }
-    return fileName;
 }
