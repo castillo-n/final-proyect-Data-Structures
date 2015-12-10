@@ -231,7 +231,7 @@ void addNewFLight(){
     cin >> DepYear;
     cout << "Enter the Departure Hour: ";
     cin >> DepHour;
-    cout << "Enter the Departure Hour: ";
+    cout << "Enter the Departure Minute: ";
     cin >> DepMin;
     cout << "Enter the Departure time (am or pm): ";
     cin >> DepAmPm;
