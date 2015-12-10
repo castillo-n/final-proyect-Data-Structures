@@ -149,17 +149,22 @@ void save(string fileSaveName){
         savingStream << endl;
 
     for(int i = 0; i < FlightList.size(); i++){
-        savingStream << FlightList[i].getIdentifier() << " ";
-        savingStream << FlightList[i].getDepCity() << " ";
-        savingStream << FlightList[i].getDepDate() << " ";
-        savingStream << FlightList[i].getDepTime() << " ";
-        savingStream << FlightList[i].getArrCity() << " ";
-        savingStream << FlightList[i].getArrDate() << " ";
-        savingStream << FlightList[i].getArrTime() << " ";
-        savingStream << endl;
+        savingStream
+            << FlightList[i].getIdentifier() << " "
+            << FlightList[i].getDepCity() << " "
+            << FlightList[i].getDepDate() << " "
+            << FlightList[i].getDepTime() << " "
+            << FlightList[i].getArrCity() << " "
+            << FlightList[i].getArrDate() << " "
+            << FlightList[i].getArrTime() << " "
+            << endl;
         for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
             savingStream << FlightList[i].getPassenger(j).getName() << endl;
         }
+        //we need something to get the seats and who is who is going to use it
+//        for(int j = 0; j < FlightList[i].getSeat(); j++){
+//            savingStream << FlightList[i].getPassenger(j).getName() << endl;
+//        }
 
     }
 
