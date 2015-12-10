@@ -479,13 +479,15 @@ string menuSelectorOpenNew(){
                     cout << "--------------------------------------------------------------------------" << endl;
                     cout << "Select one of the files from the following list" << endl;
                     cout << "--------------------------------------------------------------------------" << endl;
-                    for(int i=0; i<listOfFiles->size(); i++){
-                        cout << (i + 1) << "_ " << listOfFiles[i] << endl;
+                    for(int i=0; i<listOfFiles->size(); i++) {
+                        if (listOfFiles[i] != "") {
+                            cout << (i + 1) << "_ " << listOfFiles[i] << endl;
+                        }
                     }
                     cout << "# >> ";
                     cin >> n;
-                    if(listOfFiles[n]!= ""){
-                        fileName = listOfFiles[n];
+                    if(listOfFiles[ n -1 ]!= ""){
+                        fileName = listOfFiles[n - 1];
                         checker = false;
                         cout << "Opening " + fileName << endl;
                         connect(fileName);
