@@ -67,6 +67,7 @@ int main() {
         cout << "--------------------------------------------------------------------------" << endl;
         cout << "# >> ";
         cin >> Option;
+        cin.clear();
         switch (Option)
         {
             case 1:
@@ -98,9 +99,9 @@ int main() {
                 break;
             default:
                 cout << "The answer is not a valid answer, please try again" << endl;
+                break;
         }
         Option = 0;
-        cin.clear();
         cout << "--------------------------------------------------------------------------" << endl;
 
     }
@@ -141,11 +142,13 @@ void connect(){
             else if(pass_){lineToPassenger(line_);}
             else if(flight_){lineToFlights(line_);}
         }
+
+        cout << "Everythign is done!" << endl;
         //get fleet
     }
 }
 void lineToFleet(string line){
-    string id, econRow, econCol, plusRow, plusCol, firstRow, firstCol, price;
+    string id = "0", econRow = "0", econCol = "0", plusRow = "0", plusCol = "0", firstRow = "0", firstCol = "0", price = "0";
     int check = 0;
     bool firstChar = false;
     for(int i = 0; i < line.length(); i++){
@@ -198,12 +201,14 @@ void lineToFleet(string line){
     double b = stod(price);
     newPlane->setSeatPrice(b);
     Fleet.push_back(*newPlane);
+    cout << "fleet line done!" << endl;
 
 }
 void lineToPassenger(string line){
     Passenger *newPassenger = new Passenger();
     newPassenger->setName(line);
     PassengerList.push_back(*newPassenger);
+    cout << "passenger line done!" << endl;
 }
 void lineToFlights(string line){
 
@@ -260,6 +265,7 @@ void lineToFlights(string line){
     newFlight->setArrDate(aD);
     newFlight->setArrTime(aT);
     FlightList.push_back(*newFlight);
+    cout << "flights line done!" << endl;
 }
 
 void create(){
@@ -275,7 +281,8 @@ void save(){
     savingStream.open(fileName);
     savingStream << "FLEET" << endl;
     for(int i = 0; i < Fleet.size(); i++){
-        savingStream << Fleet[i].getIdentifier() << " "
+        savingStream
+        << Fleet[i].getIdentifier() << " "
         << Fleet[i].getEconRows() << " "
         << Fleet[i].getEconColumns() << " "
         << Fleet[i].getEconPlusRows() << " "
@@ -284,7 +291,6 @@ void save(){
         << Fleet[i].getFirstClassColumns() << " "
         << Fleet[i].getPrice() << " " << endl;
     }
-
     savingStream << endl;
     savingStream << "PASSENGERS" << endl;
     for(int i = 0; i < PassengerList.size(); i++){
@@ -315,7 +321,7 @@ void save(){
 }
 
 void addNewPlane(){
-    Plane * plane = new Plane();
+    Plane plane = Plane();
     string identifier;
     int numFCROws;
     int numPCROws;
@@ -327,30 +333,30 @@ void addNewPlane(){
 
     cout << "Enter the Plane's Tag: ";
     cin >> identifier;
-    plane->setIdentifier(identifier);
+    plane.setIdentifier(identifier);
     cout << "Enter the number of First Class rows: ";
     cin >> numFCROws;
-    plane->setFirstClassRows(numFCROws);
+    plane.setFirstClassRows(numFCROws);
     cout << "Enter the number of First Class columns: ";
     cin >> numPCols;
-    plane->setFirstClassColumns(numPCols);
+    plane.setFirstClassColumns(numPCols);
     cout << "Enter the number of Economey Plus Rows: ";
     cin >> numPCROws;
-    plane->setFirstClassRows(numPCROws);
+    plane.setFirstClassRows(numPCROws);
     cout << "Enter the number of Economey Plus Columns: ";
     cin >> numPCols;
-    plane->setEconPlusColumns(numPCols);
+    plane.setEconPlusColumns(numPCols);
     cout << "Enter the number of Economy Rows: ";
     cin >> numECROws;
-    plane->setEconRows(numECROws);
+    plane.setEconRows(numECROws);
     cout << "Enter the number of Economy Columns: ";
     cin >> numECols;
-    plane->setEconColumns(numECols);
+    plane.setEconColumns(numECols);
     cout << "Enter the Base Price of the Seat: ";
     cin >> price;
-    plane->setSeatPrice(price);
+    plane.setSeatPrice(price);
 
-    Fleet.push_back(*plane);
+    Fleet.push_back(plane);
 }
 
 void addNewFLight(){
