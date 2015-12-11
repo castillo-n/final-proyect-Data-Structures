@@ -99,7 +99,8 @@ int main() {
             default:
                 cout << "The answer is not a valid answer, please try again" << endl;
         }
-
+        Option = 0;
+        cin.clear();
         cout << "--------------------------------------------------------------------------" << endl;
 
     }
@@ -180,27 +181,27 @@ void lineToFleet(string line){
 //    int firstClassRows;
 //    double price;
 //    string identifier; // contains the identification tag of the plane
-    Plane newPlane = Plane();
+    Plane *newPlane = new Plane();
     int a = stoi(cols);
-    newPlane.setColumns(a);
+    newPlane->setColumns(a);
     a = stoi(plusRow);
-    newPlane.setEconPlusRows(a);
+    newPlane->setEconPlusRows(a);
     a = stoi(econRow);
-    newPlane.setEconRows(a);
+    newPlane->setEconRows(a);
     a = stoi(firstRow);
-    newPlane.setFirstClassRows(a);
-    newPlane.setIdentifier(id);
+    newPlane->setFirstClassRows(a);
+    newPlane->setIdentifier(id);
     a = stoi(econRow);
-    newPlane.setRows(a);
+    newPlane->setRows(a);
     double b = stod(price);
-    newPlane.setSeatPrice(b);
-    Fleet.push_back(newPlane);
+    newPlane->setSeatPrice(b);
+    Fleet->push_back(*newPlane);
 
 }
 void lineToPassenger(string line){
-    Passenger newPassenger = Passenger();
-    newPassenger.setName(line);
-    PassengerList.push_back(newPassenger);
+    Passenger *newPassenger = new Passenger();
+    newPassenger->setName(line);
+    PassengerList.push_back(*newPassenger);
 }
 void lineToFlights(string line){
 
@@ -244,19 +245,19 @@ void lineToFlights(string line){
             aT +=line[i];
         }
     }
-    Flight newFlight = Flight();
-    newFlight.setIdentifier(id);
-    newFlight.setDepCity(dC);
+    Flight *newFlight = new Flight();
+    newFlight->setIdentifier(id);
+    newFlight->setDepCity(dC);
     int m = stoi(dDateMonth);
     int d = stoi(dDateDay);
     int y = stoi(dDateYear);
     int h = stoi(dDateHour);
     int mi = stoi(dDateMin);
-    newFlight.setDepDateTime(m, d , y, h, mi, dDateAmPm);
-    newFlight.setArrCity(aC);
-    newFlight.setArrDate(aD);
-    newFlight.setArrTime(aT);
-    FlightList.push_back(newFlight);
+    newFlight->setDepDateTime(m, d , y, h, mi, dDateAmPm);
+    newFlight->setArrCity(aC);
+    newFlight->setArrDate(aD);
+    newFlight->setArrTime(aT);
+    FlightList.push_back(*newFlight);
 }
 
 void create(){
