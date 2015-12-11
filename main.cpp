@@ -125,7 +125,7 @@ void connect(){
         bool pass_ = false;
         bool flight_ = false;
         while (getline(openingStream, line_)) {
-            cout << line_ << endl;
+            //cout << line_ << endl;
             if(line_ == "FLEET"){//if fleet start putting data there
                 fleet_ = true;
                 pass_ = false;
@@ -144,12 +144,12 @@ void connect(){
             else if(flight_){lineToFlights(line_);}
         }
 
-        cout << "Everythign is done!" << endl;
+        //cout << "Everythign is done!" << endl;
         //get fleet
     }
 }
 void lineToFleet(string line){
-    cout << line << endl;
+    //cout << line << endl;
     string id = "", econRow = "0", econCol = "0", plusRow = "0", plusCol = "0", firstRow = "0", firstCol = "0", price = "0";
     int check = 0;
     bool firstChar = false;
@@ -205,23 +205,23 @@ void lineToFleet(string line){
         newPlane->setSeatPrice(b);
         Fleet.push_back(*newPlane);
     }
-    cout << "fleet line done!" << endl;
+    //cout << "fleet line done!" << endl;
 
 }
 void lineToPassenger(string line){
-    cout << line << endl;
+    //cout << line << endl;
     Passenger *newPassenger = new Passenger();
     newPassenger->setName(line);
     PassengerList.push_back(*newPassenger);
-    cout << "passenger line done!" << endl;
+    //cout << "passenger line done!" << endl;
 }
 void lineToFlights(string line){
-    cout << line << endl;
-    string id, dC, dT, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
+    //cout << line << endl;
+    string id, dC, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
     int check = 0;
     char lastChar = ' ';
     for(int i = 0; i < line.length(); i++){
-        cout << line[i] << endl;
+        //cout << line[i] << endl;
         if((line[i] == ' ' && lastChar!= ' ') || line[i] == '/' || line[i] == ':'){
             check++;
         }
@@ -229,38 +229,50 @@ void lineToFlights(string line){
             string doNothing= ":)";
         }
         else if(check == 0){
+            //cout << "id "<< endl;
             id +=line[i];
         }
         else if(check == 1){
+            //cout << "dC "<< endl;
             dC +=line[i];
         }
         else if(check == 2){
+            //cout << "dDateMonth "<< endl;
             dDateMonth += line[i];
         }
         else if(check == 3){
+            //cout << "dDateDay "<< endl;
             dDateDay += line[i];
         }
         else if(check == 4){
+            //cout << "dDateYear "<< endl;
             dDateYear += line[i];
         }
         else if(check == 5){
+            //cout << "dDateHour "<< endl;
             dDateHour += line[i];
         }
         else if(check == 6){
+            //cout << "dDateMin "<< endl;
             dDateMin += line[i];
         }
         else if(check == 7){
+            //cout << "dDateAmPm "<< endl;
             dDateAmPm += line[i];
         }
         else if(check == 8){
+            //cout << "aC "<< endl;
             aC +=line[i];
         }
         else if(check == 9){
+            //cout << "aD "<< endl;
             aD +=line[i];
         }
         else if(check >= 10){
+            //cout << "aT "<< endl;
             aT +=line[i];
         }
+        lastChar = line[i];
     }
     Flight *newFlight = new Flight();
     int m=0, d=0,y=0,h=0,mi=0;
@@ -286,7 +298,7 @@ void lineToFlights(string line){
     newFlight->setArrDate(aD);
     newFlight->setArrTime(aT);
     FlightList.push_back(*newFlight);
-    cout << "flights line done!" << endl;
+    //cout << "flights line done!" << endl;
 }
 
 void create(){
@@ -356,29 +368,36 @@ void addNewPlane(){
 
     cout << "Enter the Plane's Tag: ";
     cin >> identifier;
+    cin.clear();
     plane.setIdentifier(identifier);
     cout << "Enter the number of First Class rows: ";
     cin >> numFCROws;
+    cin.clear();
     plane.setFirstClassRows(numFCROws);
     cout << "Enter the number of First Class columns: ";
-    cin >> numPCols;
+    cin >> numFCols;
+    cin.clear();
     plane.setFirstClassColumns(numFCols);
     cout << "Enter the number of Economy Plus Rows: ";
     cin >> numPCROws;
-    plane.setFirstClassRows(numPCROws);
+    cin.clear();
+    plane.setEconPlusRows(numPCROws);
     cout << "Enter the number of Economy Plus Columns: ";
     cin >> numPCols;
+    cin.clear();
     plane.setEconPlusColumns(numPCols);
     cout << "Enter the number of Economy Rows: ";
     cin >> numECROws;
+    cin.clear();
     plane.setEconRows(numECROws);
     cout << "Enter the number of Economy Columns: ";
     cin >> numECols;
+    cin.clear();
     plane.setEconColumns(numECols);
     cout << "Enter the Base Price of the Seat: ";
     cin >> price;
+    cin.clear();
     plane.setSeatPrice(price);
-
     Fleet.push_back(plane);
 }
 
