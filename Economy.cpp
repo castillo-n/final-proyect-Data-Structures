@@ -13,7 +13,7 @@ namespace Airline {
         CalculatePrice();
     }
 
-    int Economy::CalculatePrice() const{ // calculates the new price for the Economy object
+    double Economy::CalculatePrice() const{ // calculates the new price for the Economy object
 
         int days = getNumDays();
         double price = getPrice();

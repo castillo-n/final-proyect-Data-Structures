@@ -13,7 +13,7 @@ namespace Airline {
         
     }
 
-    int EconomyPlus::CalculatePrice() const { // Calculates price of EconomyPlus seat
+    double EconomyPlus::CalculatePrice() const { // Calculates price of EconomyPlus seat
         int days = getNumDays();
         double price = getPrice();
         int miles = getMiles();

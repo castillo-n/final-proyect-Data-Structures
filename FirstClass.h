@@ -12,7 +12,7 @@ namespace Airline {
     public:
         FirstClass(); // base constructor
         FirstClass(double price, double days); // FirstClass constructor sets price and days
-        virtual int CalculatePrice() const; // Calculates price for FirstClass
+        virtual double CalculatePrice() const; // Calculates price for FirstClass
     };
 }
 

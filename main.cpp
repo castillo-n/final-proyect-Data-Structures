@@ -145,54 +145,56 @@ void connect(){
     }
 }
 void lineToFleet(string line){
-    string id, rows, cols, econRow, plusRow, firstRow, price;
+    string id, econRow, econCol, plusRow, plusCol, firstRow, firstCol, price;
     int check = 0;
+    bool firstChar = false;
     for(int i = 0; i < line.length(); i++){
-        if(line[i] == ' '){
+        if(line[i] == ' ' && firstChar){
             check++;
         }
         else if(check == 0){
+            firstChar = true;
             id +=line[i];
         }
         else if(check == 1){
-            rows +=line[i];
-        }
-        else if(check == 2){
-            cols +=line[i];
-        }
-        else if(check == 3){
             econRow +=line[i];
         }
-        else if(check == 4){
+        else if(check == 2){
+            econCol +=line[i];
+        }
+        else if(check == 3){
             plusRow +=line[i];
+        }
+        else if(check == 4){
+            plusCol +=line[i];
         }
         else if(check == 5){
             firstRow +=line[i];
         }
         else if(check == 6){
+            firstCol +=line[i];
+        }
+        else if(check == 7){
             price +=line[i];
         }
     }
-//
-//    int columns; // contains the number of columns
-//    int rows; // contains the number or rows
-//    int econRows;
-//    int econPlusRows;
-//    int firstClassRows;
-//    double price;
-//    string identifier; // contains the identification tag of the plane
+
+    int a;
     Plane *newPlane = new Plane();
-    int a = stoi(cols);
-    newPlane->setColumns(a);
+    newPlane->setIdentifier(id);
     a = stoi(plusRow);
     newPlane->setEconPlusRows(a);
+    a = stoi(plusCol);
+    newPlane->setEconPlusColumns(a);
     a = stoi(econRow);
     newPlane->setEconRows(a);
+    a = stoi(econCol);
+    newPlane->setEconColumns(a);
     a = stoi(firstRow);
     newPlane->setFirstClassRows(a);
-    newPlane->setIdentifier(id);
+    a = stoi(firstCol);
+    newPlane->setFirstClassColumns(a);
     a = stoi(econRow);
-    newPlane->setRows(a);
     double b = stod(price);
     newPlane->setSeatPrice(b);
     Fleet.push_back(*newPlane);
@@ -274,11 +276,12 @@ void save(){
     savingStream << "FLEET" << endl;
     for(int i = 0; i < Fleet.size(); i++){
         savingStream << Fleet[i].getIdentifier() << " "
-        << Fleet[i].getRows() << " "
-        << Fleet[i].getColumns() << " "
         << Fleet[i].getEconRows() << " "
+        << Fleet[i].getEconColumns() << " "
         << Fleet[i].getEconPlusRows() << " "
+        << Fleet[i].getEconPlusColumns() << " "
         << Fleet[i].getFirstClassRows() << " "
+        << Fleet[i].getFirstClassColumns() << " "
         << Fleet[i].getPrice() << " " << endl;
     }
 
@@ -301,7 +304,7 @@ void save(){
             << FlightList[i].getArrTime() << " "
             << endl;
         for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
-            savingStream  << "\n\r" << FlightList[i].getPassenger(j).getName() << "\n\r";
+            savingStream  << FlightList[i].getPassenger(j).getName() << "\n\r";
         }
 
     }
@@ -315,29 +318,34 @@ void addNewPlane(){
     Plane * plane = new Plane();
     string identifier;
     int numFCROws;
-    int numEPRows;
-    int numEcRows;
-    int cols;
-    int rows;
+    int numPCROws;
+    int numECROws;
+    int numFCols;
+    int numPCols;
+    int numECols;
     double price;
 
     cout << "Enter the Plane's Tag: ";
     cin >> identifier;
     plane->setIdentifier(identifier);
-    cout <<  "Enter the number of rows the plane contains: ";
-    cin >> rows;
-    plane->setRows(rows);
-    cout << "Enter the number of columns the plane contains: ";
-    cin >> cols;
     cout << "Enter the number of First Class rows: ";
     cin >> numFCROws;
     plane->setFirstClassRows(numFCROws);
+    cout << "Enter the number of First Class columns: ";
+    cin >> numPCols;
+    plane->setFirstClassColumns(numPCols);
     cout << "Enter the number of Economey Plus Rows: ";
-    cin >> numEPRows;
-    plane->setEconPlusRows(numEPRows);
+    cin >> numPCROws;
+    plane->setFirstClassRows(numPCROws);
+    cout << "Enter the number of Economey Plus Columns: ";
+    cin >> numPCols;
+    plane->setEconPlusColumns(numPCols);
     cout << "Enter the number of Economy Rows: ";
-    cin >> numEcRows;
-    plane->setEconRows(numEcRows);
+    cin >> numECROws;
+    plane->setEconRows(numECROws);
+    cout << "Enter the number of Economy Columns: ";
+    cin >> numECols;
+    plane->setEconColumns(numECols);
     cout << "Enter the Base Price of the Seat: ";
     cin >> price;
     plane->setSeatPrice(price);

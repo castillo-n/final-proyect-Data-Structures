@@ -10,8 +10,6 @@ using namespace std;
 namespace Airline {
 
     Plane::Plane() {
-        columns = 0;
-        rows = 0;
         econRows = 0;
         econPlusRows = 0;
         firstClassRows = 0;
@@ -20,32 +18,32 @@ namespace Airline {
         
     }
 
-    Plane::Plane(int newColumns, int newRows, string newIdentifier) {
-        columns = newColumns;
-        rows = newRows;
+    Plane::Plane(string newIdentifier) {
+//        columns = newColumns;
+//        rows = newRows;
         identifier = newIdentifier;
         
     }
 
-    void Plane::setColumns(int const & newColumns ){
-        columns = newColumns;
-        
-    }
+//    void Plane::setColumns(int const & newColumns ){
+//        columns = newColumns;
+//
+//    }
+//
+//    int Plane::getColumns() const {
+//        return columns;
+//
+//    }
 
-    int Plane::getColumns() const {
-        return columns;
-        
-    }
-
-    void Plane::setRows(int const & newRows){
-        rows = newRows;
-        
-    }
-
-    int Plane::getRows() const {
-        return rows;
-        
-    }
+//    void Plane::setRows(int const & newRows){
+//        rows = newRows;
+//
+//    }
+//
+//    int Plane::getRows() const {
+//        return rows;
+//
+//    }
 
     void Plane::setEconRows(int const & newEconRows){
         econRows = newEconRows;
@@ -90,6 +88,25 @@ namespace Airline {
     string Plane::getIdentifier() const {
         return identifier;
         
+    }
+
+    void Plane::setEconColumns(int const & newEconColumns){
+        econColumns = newEconColumns;
+    }
+    int Plane::getEconColumns() const{
+        return  econColumns;
+    }
+    void Plane::setEconPlusColumns(int const & newEconPlusColumns){
+        econPlusColumns = newEconPlusColumns;
+    }
+    int Plane::getEconPlusColumns() const{
+        return econPlusColumns;
+    }
+    void Plane::setFirstClassColumns(int const & newFirstClassColumns){
+        firstClasColumns = newFirstClassColumns;
+    }
+    int Plane::getFirstClassColumns() const{
+        return firstClasColumns;
     }
 
 }

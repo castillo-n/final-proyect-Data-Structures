@@ -61,8 +61,25 @@ namespace Airline {
             miles = newMiles;
         }
         
-        int Seat::CalculatePrice() const {
+        double Seat::CalculatePrice() const {
 			return price;
 		}
+
+    int Seat::getSeatRow() const{
+        return rowNumber;
+    }
+    int Seat::getSeatCol() const{
+        return colNumber;
+    }
+    char Seat::getSeatColChar() const{
+        return colChar;
+    }
+    void Seat::setSeatRow(int const row){
+        rowNumber = row;
+    }
+    void Seat::setSeatCol(int const col){
+        colNumber = col;
+        colChar = static_cast<int> ('A'+col);
+    }
 	
 }

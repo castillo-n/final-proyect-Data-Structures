@@ -13,7 +13,7 @@ namespace Airline {
         
     }
 
-    int FirstClass::CalculatePrice() const{ // Calculates price for First Class
+    double FirstClass::CalculatePrice() const{ // Calculates price for First Class
         int days = getNumDays();
         double price = getPrice();
 

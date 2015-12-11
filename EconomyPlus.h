@@ -12,7 +12,7 @@ namespace Airline {
     public:
         EconomyPlus(); // base constructor
         EconomyPlus(double price, int days, int miles); // constructor that sets price, days, and miles
-       virtual int CalculatePrice() const; // Calculates price for EconomyPlus seat
+       virtual double CalculatePrice() const; // Calculates price for EconomyPlus seat
     };
 }
 
