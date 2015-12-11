@@ -269,7 +269,6 @@ void create(){
 }
 
 void save(){
-
     ofstream savingStream;
     savingStream.open(fileName);
     savingStream << "FLEET" << endl;
@@ -304,10 +303,6 @@ void save(){
         for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
             savingStream  << "\n\r" << FlightList[i].getPassenger(j).getName() << "\n\r";
         }
-        //we need something to get the seats and who is who is going to use it
-//        for(int j = 0; j < FlightList[i].getSeat(); j++){
-//            savingStream << FlightList[i].getPassenger(j).getName() << endl;
-//        }
 
     }
 
@@ -369,33 +364,45 @@ void addNewFLight(){
     cout << "Enter the Flight's tag: ";
     cin >> identifier;
     flight->setIdentifier(identifier);
+    cin.clear();
     cout << "Enter the Departing City: ";
     cin >> DepCity;
     flight->setDepCity(DepCity);
+    cin.clear();
     cout << "Enter the Departure Month: ";
     cin >> DepMonth;
+    cin.clear();
     cout << "Enter the Departure Day: ";
     cin >> DepDay;
+    cin.clear();
     cout << "Enter the Departure Year: ";
     cin >> DepYear;
+    cin.clear();
     cout << "Enter the Departure Hour: ";
     cin >> DepHour;
+    cin.clear();
     cout << "Enter the Departure Minute: ";
     cin >> DepMin;
+    cin.clear();
     cout << "Enter the Departure time (am or pm): ";
     cin >> DepAmPm;
+    cin.clear();
     flight->setDepDateTime(DepMonth, DepDay, DepYear, DepHour, DepMin, DepAmPm);
     cout << "Enter the Arrival City: ";
     cin >> ArrCity;
+    cin.clear();
     flight->setArrCity(ArrCity);
     cout << "Enter the Arrival Date: ";
     cin >> ArrDate;
+    cin.clear();
     flight->setArrDate(ArrDate);
     cout << "Enter the Arrival Time: ";
     cin >> ArrTime;
+    cin.clear();
     flight->setArrTime(ArrTime);
     cout << "Enter the distance in miles of the Flight: ";
     cin >> distance;
+    cin.clear();
     flight->setDistance(distance);
 
     FlightList.push_back(*flight);
@@ -439,8 +446,8 @@ void addPassengerToFlight(){
     string last;
     string name;
 
-    int indexFlight;
-    int indexPassenger;
+    int indexFlight=-1;
+    int indexPassenger=-1;
 
     cout << "Enter the Flight's Tag: ";
     cin >> identifier;
@@ -457,14 +464,21 @@ void addPassengerToFlight(){
     cin >> last;
 
     name = first + " " + last;
-
+    bool pass = true;
     for(int i = 0; i < PassengerList.size(); i++){
         if(PassengerList[i].getName() == name){
             indexPassenger = i;
+            pass = false;
         }
     }
-
-    FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
+    if(pass){
+        Passenger *p = new Passenger();
+        p->setName(first, last);
+        PassengerList.push_back(*p);
+    }
+    cout << "here 1" <<endl;
+    FlightList.at(indexFlight).addPassenger(PassengerList.at(indexPassenger));
+    cout << "here 2" <<endl;
 }
 
 void purchaseSeat(){

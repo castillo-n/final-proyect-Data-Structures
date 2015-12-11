@@ -17,7 +17,7 @@ namespace Airline {
         numberOfItineraries=0;
     }
     string Passenger::getName() const{
-        return firstName + " " + lastName;
+        return fullName;
     }
 
     void Passenger::setName(string & fName, string & lName) {
