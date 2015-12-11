@@ -125,6 +125,7 @@ void connect(){
         bool pass_ = false;
         bool flight_ = false;
         while (getline(openingStream, line_)) {
+            cout << line_ << endl;
             if(line_ == "FLEET"){//if fleet start putting data there
                 fleet_ = true;
                 pass_ = false;
@@ -148,7 +149,8 @@ void connect(){
     }
 }
 void lineToFleet(string line){
-    string id = "0", econRow = "0", econCol = "0", plusRow = "0", plusCol = "0", firstRow = "0", firstCol = "0", price = "0";
+    cout << line << endl;
+    string id = "", econRow = "0", econCol = "0", plusRow = "0", plusCol = "0", firstRow = "0", firstCol = "0", price = "0";
     int check = 0;
     bool firstChar = false;
     for(int i = 0; i < line.length(); i++){
@@ -184,39 +186,47 @@ void lineToFleet(string line){
 
     int a;
     Plane *newPlane = new Plane();
-    newPlane->setIdentifier(id);
-    a = stoi(plusRow);
-    newPlane->setEconPlusRows(a);
-    a = stoi(plusCol);
-    newPlane->setEconPlusColumns(a);
-    a = stoi(econRow);
-    newPlane->setEconRows(a);
-    a = stoi(econCol);
-    newPlane->setEconColumns(a);
-    a = stoi(firstRow);
-    newPlane->setFirstClassRows(a);
-    a = stoi(firstCol);
-    newPlane->setFirstClassColumns(a);
-    a = stoi(econRow);
-    double b = stod(price);
-    newPlane->setSeatPrice(b);
-    Fleet.push_back(*newPlane);
+    if(id!="") {
+        newPlane->setIdentifier(id);
+        a = stoi(plusRow);
+        newPlane->setEconPlusRows(a);
+        a = stoi(plusCol);
+        newPlane->setEconPlusColumns(a);
+        a = stoi(econRow);
+        newPlane->setEconRows(a);
+        a = stoi(econCol);
+        newPlane->setEconColumns(a);
+        a = stoi(firstRow);
+        newPlane->setFirstClassRows(a);
+        a = stoi(firstCol);
+        newPlane->setFirstClassColumns(a);
+        a = stoi(econRow);
+        double b = stod(price);
+        newPlane->setSeatPrice(b);
+        Fleet.push_back(*newPlane);
+    }
     cout << "fleet line done!" << endl;
 
 }
 void lineToPassenger(string line){
+    cout << line << endl;
     Passenger *newPassenger = new Passenger();
     newPassenger->setName(line);
     PassengerList.push_back(*newPassenger);
     cout << "passenger line done!" << endl;
 }
 void lineToFlights(string line){
-
+    cout << line << endl;
     string id, dC, dT, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
     int check = 0;
+    char lastChar = ' ';
     for(int i = 0; i < line.length(); i++){
-        if(line[i] == ' ' || line[i] == '/' || line[i] == ':'){
+        cout << line[i] << endl;
+        if((line[i] == ' ' && lastChar!= ' ') || line[i] == '/' || line[i] == ':'){
             check++;
+        }
+        else if(line[i] == ' '){
+            string doNothing= ":)";
         }
         else if(check == 0){
             id +=line[i];
@@ -253,13 +263,24 @@ void lineToFlights(string line){
         }
     }
     Flight *newFlight = new Flight();
+    int m=0, d=0,y=0,h=0,mi=0;
     newFlight->setIdentifier(id);
     newFlight->setDepCity(dC);
-    int m = stoi(dDateMonth);
-    int d = stoi(dDateDay);
-    int y = stoi(dDateYear);
-    int h = stoi(dDateHour);
-    int mi = stoi(dDateMin);
+    if(dDateMonth!="") {
+        m = stoi(dDateMonth);
+    }
+    if(dDateMonth!="") {
+        d = stoi(dDateDay);
+    }
+    if(dDateMonth!="") {
+        y = stoi(dDateYear);
+    }
+    if(dDateMonth!="") {
+        h = stoi(dDateHour);
+    }
+    if(dDateMonth!="") {
+        mi = stoi(dDateMin);
+    }
     newFlight->setDepDateTime(m, d , y, h, mi, dDateAmPm);
     newFlight->setArrCity(aC);
     newFlight->setArrDate(aD);
@@ -281,15 +302,17 @@ void save(){
     savingStream.open(fileName);
     savingStream << "FLEET" << endl;
     for(int i = 0; i < Fleet.size(); i++){
-        savingStream
-        << Fleet[i].getIdentifier() << " "
-        << Fleet[i].getEconRows() << " "
-        << Fleet[i].getEconColumns() << " "
-        << Fleet[i].getEconPlusRows() << " "
-        << Fleet[i].getEconPlusColumns() << " "
-        << Fleet[i].getFirstClassRows() << " "
-        << Fleet[i].getFirstClassColumns() << " "
-        << Fleet[i].getPrice() << " " << endl;
+        if(Fleet[i].getIdentifier()!= "0") {
+            savingStream
+            << Fleet[i].getIdentifier() << " "
+            << Fleet[i].getEconRows() << " "
+            << Fleet[i].getEconColumns() << " "
+            << Fleet[i].getEconPlusRows() << " "
+            << Fleet[i].getEconPlusColumns() << " "
+            << Fleet[i].getFirstClassRows() << " "
+            << Fleet[i].getFirstClassColumns() << " "
+            << Fleet[i].getPrice() << " " << endl;
+        }
     }
     savingStream << endl;
     savingStream << "PASSENGERS" << endl;
@@ -339,11 +362,11 @@ void addNewPlane(){
     plane.setFirstClassRows(numFCROws);
     cout << "Enter the number of First Class columns: ";
     cin >> numPCols;
-    plane.setFirstClassColumns(numPCols);
-    cout << "Enter the number of Economey Plus Rows: ";
+    plane.setFirstClassColumns(numFCols);
+    cout << "Enter the number of Economy Plus Rows: ";
     cin >> numPCROws;
     plane.setFirstClassRows(numPCROws);
-    cout << "Enter the number of Economey Plus Columns: ";
+    cout << "Enter the number of Economy Plus Columns: ";
     cin >> numPCols;
     plane.setEconPlusColumns(numPCols);
     cout << "Enter the number of Economy Rows: ";
@@ -360,7 +383,7 @@ void addNewPlane(){
 }
 
 void addNewFLight(){
-    Flight *flight = new Flight();
+    Flight flight = Flight();
     string identifier;
     string DepCity;
     int DepMonth;
@@ -377,11 +400,11 @@ void addNewFLight(){
 
     cout << "Enter the Flight's tag: ";
     cin >> identifier;
-    flight->setIdentifier(identifier);
+    flight.setIdentifier(identifier);
     cin.clear();
     cout << "Enter the Departing City: ";
     cin >> DepCity;
-    flight->setDepCity(DepCity);
+    flight.setDepCity(DepCity);
     cin.clear();
     cout << "Enter the Departure Month: ";
     cin >> DepMonth;
@@ -401,39 +424,39 @@ void addNewFLight(){
     cout << "Enter the Departure time (am or pm): ";
     cin >> DepAmPm;
     cin.clear();
-    flight->setDepDateTime(DepMonth, DepDay, DepYear, DepHour, DepMin, DepAmPm);
+    flight.setDepDateTime(DepMonth, DepDay, DepYear, DepHour, DepMin, DepAmPm);
     cout << "Enter the Arrival City: ";
     cin >> ArrCity;
     cin.clear();
-    flight->setArrCity(ArrCity);
+    flight.setArrCity(ArrCity);
     cout << "Enter the Arrival Date: ";
     cin >> ArrDate;
     cin.clear();
-    flight->setArrDate(ArrDate);
+    flight.setArrDate(ArrDate);
     cout << "Enter the Arrival Time: ";
     cin >> ArrTime;
     cin.clear();
-    flight->setArrTime(ArrTime);
+    flight.setArrTime(ArrTime);
     cout << "Enter the distance in miles of the Flight: ";
     cin >> distance;
     cin.clear();
-    flight->setDistance(distance);
+    flight.setDistance(distance);
 
-    FlightList.push_back(*flight);
+    FlightList.push_back(flight);
 }
 void addNewPassenger(){
-    Passenger * passenger = new Passenger();
+    Passenger passenger = Passenger();
     string FirstName;
     string LastName;
 
     cout << "Enter the passengers First Name: ";
     cin >> FirstName;
-    passenger->setFirstName(FirstName);
+    passenger.setFirstName(FirstName);
     cout << "Enter the passenger's Last Name: ";
     cin >> LastName;
-    passenger->setLastName(LastName);
+    passenger.setLastName(LastName);
 
-    PassengerList.push_back(*passenger);
+    PassengerList.push_back(passenger);
 }
 
 void connectPlaneToFlight(){
@@ -486,9 +509,9 @@ void addPassengerToFlight(){
         }
     }
     if(pass){
-        Passenger *p = new Passenger();
-        p->setName(first, last);
-        PassengerList.push_back(*p);
+        Passenger p = Passenger();
+        p.setName(first, last);
+        PassengerList.push_back(p);
     }
     cout << "here 1" <<endl;
     FlightList.at(indexFlight).addPassenger(PassengerList.at(indexPassenger));
@@ -681,7 +704,7 @@ void menuSelectorOpenNew(){
                 cin >> f;
 
                 if(f != ""){
-                    if(f.substr(f.length() - 4, f.length()) == ".pla") {
+                    if(f.length() > 4 && f.substr(f.length() - 4, f.length()) == ".pla") {
                         fileName = f;
                     }else{
                         fileName = f + ".pla";
