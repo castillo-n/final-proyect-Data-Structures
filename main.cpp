@@ -210,9 +210,9 @@ void lineToFleet(string line){
 }
 void lineToPassenger(string line){
     //cout << line << endl;
-    Passenger *newPassenger = new Passenger();
-    newPassenger->setName(line);
-    PassengerList.push_back(*newPassenger);
+    Passenger newPassenger = Passenger();
+    newPassenger.setName(line);
+    PassengerList.push_back(newPassenger);
     //cout << "passenger line done!" << endl;
 }
 void lineToFlights(string line){
@@ -329,6 +329,7 @@ void save(){
     savingStream << endl;
     savingStream << "PASSENGERS" << endl;
     for(int i = 0; i < PassengerList.size(); i++){
+            cout << PassengerList[i].getName() << endl;
         savingStream << PassengerList[i].getName()  << endl;
     }
 
@@ -464,18 +465,18 @@ void addNewFLight(){
     FlightList.push_back(flight);
 }
 void addNewPassenger(){
-    Passenger passenger = Passenger();
+    Passenger pa = Passenger();
     string FirstName;
     string LastName;
 
+    Passenger p = Passenger();
     cout << "Enter the passengers First Name: ";
     cin >> FirstName;
-    passenger.setFirstName(FirstName);
     cout << "Enter the passenger's Last Name: ";
     cin >> LastName;
-    passenger.setLastName(LastName);
+    p.setName(FirstName, LastName);
 
-    PassengerList.push_back(passenger);
+    PassengerList.push_back(p);
 }
 
 void connectPlaneToFlight(){
@@ -533,7 +534,7 @@ void addPassengerToFlight(){
         PassengerList.push_back(p);
     }
     cout << "here 1" <<endl;
-    FlightList.at(indexFlight).addPassenger(PassengerList.at(indexPassenger));
+    FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
     cout << "here 2" <<endl;
 }
 
