@@ -283,9 +283,10 @@ void save(){
         << Fleet[i].getPrice() << " " << endl;
     }
 
+    savingStream << endl;
     savingStream << "PASSENGERS" << endl;
     for(int i = 0; i < PassengerList.size(); i++){
-        savingStream << PassengerList[i].getName();
+        savingStream << PassengerList[i].getName()  << endl;
     }
 
         savingStream << endl;
@@ -301,7 +302,7 @@ void save(){
             << FlightList[i].getArrTime() << " "
             << endl;
         for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
-            savingStream << FlightList[i].getPassenger(j).getName() << endl;
+            savingStream  << "\n\r" << FlightList[i].getPassenger(j).getName() << "\n\r";
         }
         //we need something to get the seats and who is who is going to use it
 //        for(int j = 0; j < FlightList[i].getSeat(); j++){
@@ -310,6 +311,7 @@ void save(){
 
     }
 
+    savingStream << endl;
     savingStream.close();
 
 }
