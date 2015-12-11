@@ -122,9 +122,7 @@ void connect(){
         bool fleet_ = false;
         bool pass_ = false;
         bool flight_ = false;
-        while (true) {
-            openingStream >> line_;
-            if( openingStream.eof() ) {break;}
+        while (getline(openingStream, line_)) {
             if(line_ == "FLEET"){//if fleet start putting data there
                 fleet_ = true;
                 pass_ = false;
@@ -138,7 +136,7 @@ void connect(){
                 pass_ = false;
                 flight_ = true;
             }
-            if(fleet_){lineToFleet(line_);}
+            else if(fleet_){lineToFleet(line_);}
             else if(pass_){lineToPassenger(line_);}
             else if(flight_){lineToFlights(line_);}
         }
@@ -183,13 +181,19 @@ void lineToFleet(string line){
 //    double price;
 //    string identifier; // contains the identification tag of the plane
     Plane newPlane = Plane();
-    newPlane.setColumns(stoi(cols));
-    newPlane.setEconPlusRows(stoi(plusRow));
-    newPlane.setEconRows(stoi(econRow));
-    newPlane.setFirstClassRows(stoi(firstRow));
+    int a = stoi(cols);
+    newPlane.setColumns(a);
+    a = stoi(plusRow);
+    newPlane.setEconPlusRows(a);
+    a = stoi(econRow);
+    newPlane.setEconRows(a);
+    a = stoi(firstRow);
+    newPlane.setFirstClassRows(a);
     newPlane.setIdentifier(id);
-    newPlane.setRows(stoi(econRow));
-    newPlane.setSeatPrice(stod(price));
+    a = stoi(econRow);
+    newPlane.setRows(a);
+    double b = stod(price);
+    newPlane.setSeatPrice(b);
     Fleet.push_back(newPlane);
 
 }
