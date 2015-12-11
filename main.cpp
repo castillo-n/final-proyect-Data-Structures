@@ -200,6 +200,59 @@ void lineToPassenger(string line){
 }
 void lineToFlights(string line){
 
+    string id, dC, dT, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
+    int check = 0;
+    for(int i = 0; i < line.length(); i++){
+        if(line[i] == ' ' || line[i] == '/' || line[i] == ':'){
+            check++;
+        }
+        else if(check == 0){
+            id +=line[i];
+        }
+        else if(check == 1){
+            dC +=line[i];
+        }
+        else if(check == 2){
+            dDateMonth += line[i];
+        }
+        else if(check == 3){
+            dDateDay += line[i];
+        }
+        else if(check == 4){
+            dDateYear += line[i];
+        }
+        else if(check == 5){
+            dDateHour += line[i];
+        }
+        else if(check == 6){
+            dDateMin += line[i];
+        }
+        else if(check == 7){
+            dDateAmPm += line[i];
+        }
+        else if(check == 8){
+            aC +=line[i];
+        }
+        else if(check == 9){
+            aD +=line[i];
+        }
+        else if(check >= 10){
+            aT +=line[i];
+        }
+    }
+    Flight newFlight = Flight();
+    newFlight.setIdentifier(id);
+    newFlight.setDepCity(dC);
+    int m = stoi(dDateMonth);
+    int d = stoi(dDateDay);
+    int y = stoi(dDateYear);
+    int h = stoi(dDateHour);
+    int mi = stoi(dDateMin);
+    newFlight.setDepDateTime(m, d , y, h, mi, dDateAmPm);
+    newFlight.setArrCity(aC);
+    newFlight.setArrDate(aD);
+    newFlight.setArrTime(aT);
+    FlightList.push_back(newFlight);
 }
 
 void create(){
@@ -237,7 +290,6 @@ void save(){
         savingStream
             << FlightList[i].getIdentifier() << " "
             << FlightList[i].getDepCity() << " "
-            << FlightList[i].getDepDate() << " "
             << FlightList[i].getDepTime() << " "
             << FlightList[i].getArrCity() << " "
             << FlightList[i].getArrDate() << " "

@@ -83,8 +83,8 @@ namespace Airline{
                             if (amPm == "AM" || amPm == "Am" || amPm == "am" || amPm == "PM" || amPm == "Pm" ||
                                 amPm == "pm") {
                                 depDateAmPm = amPm;
-                                depTime = to_string(month) + "/" + to_string(month) + "/" + to_string(month) + "/" +
-                                          to_string(month) + ":" + to_string(month) + " " + amPm;
+                                depTime = to_string(month) + "/" + to_string(month) + "/" + to_string(month) + " " +
+                                          to_string(hour) + ":" + to_string(min) + " " + amPm;
                             } else {
 //                                cout << "wrong time stamp" << endl;
                                 a = true;
