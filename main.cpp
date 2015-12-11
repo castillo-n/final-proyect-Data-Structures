@@ -195,7 +195,7 @@ void lineToFleet(string line){
     newPlane->setRows(a);
     double b = stod(price);
     newPlane->setSeatPrice(b);
-    Fleet->push_back(*newPlane);
+    Fleet.push_back(*newPlane);
 
 }
 void lineToPassenger(string line){
