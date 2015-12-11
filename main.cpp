@@ -194,7 +194,9 @@ void lineToFleet(string line){
 
 }
 void lineToPassenger(string line){
-
+    Passenger newPassenger = Passenger();
+    newPassenger.setName(line);
+    PassengerList.push_back(newPassenger);
 }
 void lineToFlights(string line){
 

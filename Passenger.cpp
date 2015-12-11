@@ -23,6 +23,23 @@ namespace Airline {
     void Passenger::setName(string & fName, string & lName) {
         firstName = fName;
         lastName = lName;
+        fullName = fName + " " + lName;
+    }
+    void Passenger::setName(string & theFullName) {
+        fullName = theFullName;
+        firstName = "";
+        lastName = "";
+        bool fn = true;
+        for(int i = 0; i < theFullName.length(); i++) {
+            if (theFullName[i] == ' ') {
+                fn = false;
+            }
+            if(fn){
+                firstName+=theFullName[i];
+            }else{
+                lastName+=theFullName[i];
+            }
+        }
     }
 
     void Passenger::setFirstName(string & fName) {

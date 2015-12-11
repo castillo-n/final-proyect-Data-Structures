@@ -25,6 +25,7 @@ namespace Airline {
 
         void setItinerary(Itinerary * theItine);
         void setName(string & fName, string & lName);
+        void setName(string & theFullName);
         void setFirstName(string & fName) ;
         void setLastName(string & lName) ;
 
@@ -32,6 +33,7 @@ namespace Airline {
         double balance;
         string firstName;
         string lastName;
+        string fullName;
         int numberOfItineraries;
         vector<Itinerary * > itineraryList;
     };
