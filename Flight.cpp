@@ -296,8 +296,8 @@ namespace Airline{
         seatMap[row][col]->setSeatAv('X');
     }
 
-    Seat Flight::getSeat(int row, int col) const {
-        return *seatMap[row][col];
+    Seat* Flight::getSeat(int row, int col) const {
+        return seatMap[row][col];
     }
 
     void Flight::addPassenger(Passenger p){

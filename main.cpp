@@ -519,6 +519,8 @@ void addPassengerToFlight(){
     string last;
     string name;
 
+    Seat * seat;
+
     int indexFlight=-1;
     int indexFleet=-1;
     int indexPassenger=-1;
@@ -585,79 +587,26 @@ void addPassengerToFlight(){
                 cin >> row;
                 cout << "Enter the seat Col: ";
                 cin >> col;
-                if( row < fr ) { //first class
-                    if (col < fc) {
-                        FirstClass seat;
-                        seat = FlightList[indexFlight].getSeat(row, col);
-                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
-                        double price = seat.CalculatePrice();
-                        if (seat.getSeatAv() != 'X') {
-                            string yesNo;
-                            cout <<
-                            "The seat is available for $" + to_string(price) +
-                            ". Do you want to purchase? (yes or no or x to exit)" <<
-                            endl;
-                            cin >> yesNo;
-                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
-                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
-                                it->setSeat(seat);
-                                PassengerList[indexPassenger].setItinerary(it);
-                                occupied = false;
-                            }else if(yesNo == "x" || yesNo == "X") {
-                                occupied = false;
-                            }
-                        }
-                    }
-                }else if( row < fr+pr) { // economy plus
-                    if( col < fc){
-                        EconomyPlus seat;
-                        seat = FlightList[indexFlight].getSeat(row, col);
-                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
-                        double price = seat.CalculatePrice();
-                        if (seat.getSeatAv() != 'X') {
-                            string yesNo;
-                            cout <<
-                            "The seat is available for $" + to_string(price) +
-                            ". Do you want to purchase? (yes or no or x to exit)" <<
-                            endl;
-                            cin >> yesNo;
-                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
-                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
-                                it->setSeat(seat);
-                                PassengerList[indexPassenger].setItinerary(it);
-                                occupied = false;
-                            }else if(yesNo == "x" || yesNo == "X") {
-                                occupied = false;
-                            }
-                        }
-                    }
-                }else if( row < fr+pr+er){
-                    if( col < fc){
-                        Economy seat;
-                        seat = FlightList[indexFlight].getSeat(row, col);
-                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
-                        double price = seat.CalculatePrice();
-                        if (seat.getSeatAv() != 'X') {
-                            string yesNo;
-                            cout <<
-                            "The seat is available for $" + to_string(price) +
-                            ". Do you want to purchase? (yes or no or x to exit)" <<
-                            endl;
-                            cin >> yesNo;
-                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
-                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
-                                it->setSeat(seat);
-                                PassengerList[indexPassenger].setItinerary(it);
-                                occupied = false;
-                            }else if(yesNo == "x" || yesNo == "X") {
-                                occupied = false;
-                            }
-                        }
+                seat = FlightList[indexFlight].getSeat(row, col);
+                seat->setNumDays(FlightList[indexFlight].amountOfDaysTo());
+                double price = seat->CalculatePrice();
+                if (seat->getSeatAv() != 'X') {
+                    string yesNo;
+                    cout <<
+                    "The seat is available for $" + to_string(price) +
+                    ". Do you want to purchase? (yes or no or x to exit)" <<
+                    endl;
+                    cin >> yesNo;
+                    if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
+                        FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
+                        it->setSeat(*seat);
+                        PassengerList[indexPassenger].setItinerary(it);
+                        occupied = false;
+                    }else if(yesNo == "x" || yesNo == "X") {
+                        occupied = false;
                     }
                 }
-
-
-                }else{
+                else{
                         cout << "Sorry the seat is taken, try again" << endl;
                 }
             }

@@ -45,7 +45,7 @@ namespace Airline {
         void displaySeatMap();
         void clearSeatMap();
         void occupySeat(int row, int col);
-        Seat getSeat(int row, int col) const;
+        Seat* getSeat(int row, int col) const;
         void seatDumper( istream & file );
         void addPassenger(Passenger p);
         Passenger getAPassenger(string name) const;
