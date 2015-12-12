@@ -68,7 +68,7 @@ namespace Airline {
         string arrTime;
         int distance;
         string identifier;
-        Plane * designatedPlane;
+        Plane designatedPlane;
         vector< vector<Seat *> > seatMap;
         vector<Passenger> passengerList;
     };

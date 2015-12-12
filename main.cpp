@@ -147,9 +147,14 @@ void connect(){
         //cout << "Everythign is done!" << endl;
         //get fleet
     }
+//    cout << "works 1 "<<endl;
+    connectPlaneToFlight();
+//    cout << "works 2 "<<endl;
+    setUpFlights();
+//    cout << "works 3 "<<endl;
 }
 void lineToFleet(string line){
-    //cout << line << endl;
+//    cout << line << endl;
     string id = "", econRow = "0", econCol = "0", plusRow = "0", plusCol = "0", firstRow = "0", firstCol = "0", price = "0";
     int check = 0;
     bool firstChar = false;
@@ -209,14 +214,14 @@ void lineToFleet(string line){
 
 }
 void lineToPassenger(string line){
-    //cout << line << endl;
+//    cout << line << endl;
     Passenger newPassenger = Passenger();
     newPassenger.setName(line);
     PassengerList.push_back(newPassenger);
     //cout << "passenger line done!" << endl;
 }
 void lineToFlights(string line){
-    //cout << line << endl;
+//    cout << line << endl;
     string id, dC, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
     int check = 0;
     char lastChar = ' ';
@@ -330,7 +335,8 @@ void save(){
     savingStream << "PASSENGERS" << endl;
     for(int i = 0; i < PassengerList.size(); i++) {
         if (PassengerList[i].getName() != "" && PassengerList[i].getName() != " " && PassengerList[i].getName() != "\n") {
-            savingStream << PassengerList[i].getName() << endl;
+            savingStream << PassengerList[i].getName() << PassengerList[i].dumpItinerary() << endl;
+//            PassengerList[i].
         }
     }
 
@@ -341,7 +347,7 @@ void save(){
 
     savingStream << "FLIGHTS" << endl;
     for(int i = 0; i < FlightList.size(); i++) {
-        if (FlightList[i].getIdentifier() != "" || FlightList[i].getIdentifier() != " ") {
+        if (FlightList[i].getIdentifier() != "" && FlightList[i].getIdentifier() != "0" && FlightList[i].getIdentifier() != "0 " && FlightList[i].getIdentifier() != " ") {
             savingStream
             << FlightList[i].getIdentifier() << " "
             << FlightList[i].getDepCity() << " "
@@ -489,8 +495,12 @@ void connectPlaneToFlight(){
 
     for(int i = 0; i < FlightList.size(); i++){
         for(int j = 0; j < Fleet.size(); j++){
+            cout << FlightList.size() << " " << Fleet.size() << endl;
             if(FlightList[i].getIdentifier() == Fleet[j].getIdentifier()){
-                FlightList[i].addPlane(Fleet[j]);
+                if(FlightList[i].getIdentifier()!=" " && FlightList[i].getIdentifier()!="") {
+                    cout << FlightList[i].getIdentifier() << " " << Fleet[j].getIdentifier() << endl;
+                    FlightList[i].addPlane(Fleet[j]);
+                }
             }
         }
     }
@@ -510,6 +520,7 @@ void addPassengerToFlight(){
     string name;
 
     int indexFlight=-1;
+    int indexFleet=-1;
     int indexPassenger=-1;
 
     cout << "Enter the Flight's Tag: ";
@@ -518,30 +529,152 @@ void addPassengerToFlight(){
     for(int i = 0; i < FlightList.size(); i++){
         if(FlightList[i].getIdentifier() == identifier){
             indexFlight = i;
+//            cout << to_string(indexFlight) << endl;
         }
     }
 
-    cout << "Enter the Passenger's First Name: ";
-    cin >> first;
-    cout << "Enter the Passenger's Last Name: ";
-    cin >> last;
+    if(indexFlight != -1) {
+        for (int i = 0; i < Fleet.size(); i++) {
+            if (Fleet[i].getIdentifier() == identifier) {
+                indexFleet = i;
+//                cout << to_string(indexFlight) << endl;
+            }
+        }
+        if (indexFleet != 1) {
+            int er,ec,pr,pc,fr,fc;
+            er = Fleet[indexFleet].getEconRows();
+            ec = Fleet[indexFleet].getEconColumns();
+            pr = Fleet[indexFleet].getEconPlusRows();
+            pc = Fleet[indexFleet].getEconPlusColumns();
+            fr = Fleet[indexFleet].getFirstClassRows();
+            fc = Fleet[indexFleet].getFirstClassColumns();
+            cout << "Enter the Passenger's First Name: ";
+            cin >> first;
+            cout << "Enter the Passenger's Last Name: ";
+            cin >> last;
 
-    name = first + " " + last;
-    bool pass = true;
-    for(int i = 0; i < PassengerList.size(); i++){
-        if(PassengerList[i].getName() == name){
-            indexPassenger = i;
-            pass = false;
+            name = first + " " + last;
+            bool pass = true;
+            for (int i = 0; i < PassengerList.size(); i++) {
+                cout << "in for loop " << endl;
+                cout << " ----------------- " << endl;
+                cout << PassengerList[i].getName() << endl;
+                cout << " ----------------- " << endl;
+                cout << name << endl;
+                if (PassengerList[i].getName() == name) {
+                    cout << PassengerList[i].getName() << endl;
+                    indexPassenger = i;
+                    pass = false;
+                }
+            }
+            cout << "done with the loop " << endl;
+            if (pass) {
+                cout << "there was no passager with that name, creating one..." << endl;
+                Passenger p = Passenger();
+                p.setName(first, last);
+                PassengerList.push_back(p);
+                indexPassenger = PassengerList.size() - 1;
+            }
+            int row, col;
+            bool occupied = true;
+            FlightList[indexFlight].displaySeatMap();
+            Itinerary *it = new Itinerary();
+            while (occupied) {
+                bool check = false;
+                cout << "Enter the Seat Row: ";
+                cin >> row;
+                cout << "Enter the seat Col: ";
+                cin >> col;
+                if( row < fr ) { //first class
+                    if (col < fc) {
+                        FirstClass seat;
+                        seat = FlightList[indexFlight].getSeat(row, col);
+                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
+                        double price = seat.CalculatePrice();
+                        if (seat.getSeatAv() != 'X') {
+                            string yesNo;
+                            cout <<
+                            "The seat is available for $" + to_string(price) +
+                            ". Do you want to purchase? (yes or no or x to exit)" <<
+                            endl;
+                            cin >> yesNo;
+                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
+                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
+                                it->setSeat(seat);
+                                PassengerList[indexPassenger].setItinerary(it);
+                                occupied = false;
+                            }else if(yesNo == "x" || yesNo == "X") {
+                                occupied = false;
+                            }
+                        }
+                    }
+                }else if( row < fr+pr) { // economy plus
+                    if( col < fc){
+                        EconomyPlus seat;
+                        seat = FlightList[indexFlight].getSeat(row, col);
+                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
+                        double price = seat.CalculatePrice();
+                        if (seat.getSeatAv() != 'X') {
+                            string yesNo;
+                            cout <<
+                            "The seat is available for $" + to_string(price) +
+                            ". Do you want to purchase? (yes or no or x to exit)" <<
+                            endl;
+                            cin >> yesNo;
+                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
+                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
+                                it->setSeat(seat);
+                                PassengerList[indexPassenger].setItinerary(it);
+                                occupied = false;
+                            }else if(yesNo == "x" || yesNo == "X") {
+                                occupied = false;
+                            }
+                        }
+                    }
+                }else if( row < fr+pr+er){
+                    if( col < fc){
+                        Economy seat;
+                        seat = FlightList[indexFlight].getSeat(row, col);
+                        seat.setNumDays(FlightList[indexFlight].amountOfDaysTo());
+                        double price = seat.CalculatePrice();
+                        if (seat.getSeatAv() != 'X') {
+                            string yesNo;
+                            cout <<
+                            "The seat is available for $" + to_string(price) +
+                            ". Do you want to purchase? (yes or no or x to exit)" <<
+                            endl;
+                            cin >> yesNo;
+                            if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
+                                FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
+                                it->setSeat(seat);
+                                PassengerList[indexPassenger].setItinerary(it);
+                                occupied = false;
+                            }else if(yesNo == "x" || yesNo == "X") {
+                                occupied = false;
+                            }
+                        }
+                    }
+                }
+
+
+                }else{
+                        cout << "Sorry the seat is taken, try again" << endl;
+                }
+            }
+
+            cout << "Your seat has been purchased." << endl
+            << "Balance: $" << seat->CalculatePrice();
+            it->setFlight(FlightList[indexFlight]);
+            PassengerList[indexPassenger].setItinerary(it);
+            FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
+        }
+        else{
+            cout << "There is no flight with that identifier in our Fleet" << endl;
         }
     }
-    if(pass){
-        Passenger p = Passenger();
-        p.setName(first, last);
-        PassengerList.push_back(p);
+    else{
+        cout << "There is no flight with that identifier" << endl;
     }
-    cout << "here 1" <<endl;
-    FlightList[indexFlight].addPassenger(PassengerList[indexPassenger]);
-    cout << "here 2" <<endl;
 }
 
 void purchaseSeat(){
@@ -550,31 +683,32 @@ void purchaseSeat(){
     Seat seat;
     int row;
     int col;
-
+    bool isThere = false;
     cout << "Enter the Flight's Tag: ";
     cin >> identifier;
 
     for(int i = 0; i < FlightList.size(); i++){
         if(FlightList[i].getIdentifier() == identifier){
             flight = FlightList[i];
+            isThere = true;
         }
     }
+    if(isThere) {
+        flight.displaySeatMap();
+        cout << "Enter the Seat Row: ";
+        cin >> row;
+        cout << "Enter the seat Col: ";
+        cin >> col;
 
-    flight.displaySeatMap();
+        seat = flight.getSeat(row, col);
+        flight.occupySeat(row, col);
 
-    cout << "Enter the Seat Row: ";
-    cin >> row;
-    cout << "Enter the seat Col: ";
-    cin >> col;
+        cout << "Your seat has been purchased." << endl
+             << "Balance: $" << seat.CalculatePrice();
 
-    seat = flight.getSeat(row, col);
-    flight.occupySeat(row, col);
-
-    //needs to get current date and calculate price for when the passenger purchased the seat
-    //seat.setNumDays();
-
-    cout << "Your seat has been purchased." << endl
-         << "Balance: $" << seat.CalculatePrice();
+    }else{
+        cout << "There is no flight with that identifier" << endl;
+    }
 
 }
 

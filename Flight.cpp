@@ -83,6 +83,9 @@ namespace Airline{
                             if (amPm == "AM" || amPm == "Am" || amPm == "am" || amPm == "PM" || amPm == "Pm" ||
                                 amPm == "pm") {
                                 depDateAmPm = amPm;
+                                if(month < 10){
+
+                                }
                                 depTime = to_string(month) + "/" + to_string(day) + "/" + to_string(year) + " " +
                                           to_string(hour) + ":" + to_string(min) + " " + amPm;
                             } else {
@@ -143,22 +146,22 @@ namespace Airline{
     }
 
     void Flight::addPlane(Plane plane){
-        *designatedPlane = plane;
+        designatedPlane = plane;
     }
 
     Plane Flight::getPlane() const{
-        return *designatedPlane;
+        return designatedPlane;
     }
 
     void Flight::createSeatMap() {
 
-        int econRows = designatedPlane->getEconRows();
-        int econCol = designatedPlane->getEconColumns();
-        int econPlusRows = designatedPlane->getEconPlusRows();
-        int econPlusCol = designatedPlane->getEconPlusColumns();
-        int firstClassRows = designatedPlane->getFirstClassRows();
-        int firstClassCol = designatedPlane->getFirstClassColumns();
-        double price = designatedPlane->getPrice();
+        int econRows = designatedPlane.getEconRows();
+        int econCol = designatedPlane.getEconColumns();
+        int econPlusRows = designatedPlane.getEconPlusRows();
+        int econPlusCol = designatedPlane.getEconPlusColumns();
+        int firstClassRows = designatedPlane.getFirstClassRows();
+        int firstClassCol = designatedPlane.getFirstClassColumns();
+        double price = designatedPlane.getPrice();
 
         for(int i = 0; i < firstClassRows; i++){
             vector<Seat*> firstClassRow;
@@ -204,12 +207,12 @@ namespace Airline{
     }
 
     void Flight::displaySeatMap() {
-        int frows = designatedPlane->getFirstClassRows();
-        int fcols = designatedPlane->getFirstClassColumns();
-        int erows = designatedPlane->getFirstClassRows();
-        int ecols = designatedPlane->getFirstClassColumns();
-        int prows = designatedPlane->getFirstClassRows();
-        int pcols = designatedPlane->getFirstClassColumns();
+        int frows = designatedPlane.getFirstClassRows();
+        int fcols = designatedPlane.getFirstClassColumns();
+        int erows = designatedPlane.getEconRows();
+        int ecols = designatedPlane.getEconColumns();
+        int prows = designatedPlane.getEconPlusRows();
+        int pcols = designatedPlane.getEconPlusColumns();
         char firstCol = static_cast<int> ('A'+ fcols);
         char plusCol = static_cast<int> ('A'+ pcols);
         char econCol = static_cast<int> ('A'+ ecols);
@@ -222,50 +225,53 @@ namespace Airline{
         cout << "----------------- First Class -----------------" << endl;
         for(int i = 0; i < frows; i++){
             if(i < 9) {
-                cout << " " << i << ": ";
+                cout << " " << to_string(i+1) << ": ";
             }else {
-                cout << i << ": ";
+                cout << to_string(i+1) << ": ";
             }
             for (int j = 0; j < fcols; j++){
                 cout << seatMap[i][j]->getSeatAv();
 //                cout << seatMap[i][j]->getSeatCol() << ":" << seatMap[i][j]->getSeatAv();
             }
+            cout << endl;
         }
         cout << "-------------- Economy Plus Class --------------" << endl;
-        for(int i = 0; i < (prows + frows); i++){
+        for(int i = frows; i < (prows + frows); i++){
             if(i < 9) {
-                cout << " " << i << ": ";
+                cout << " " << to_string(i+1) << ": ";
             }else {
-                cout << i << ": ";
+                cout << to_string(i+1) << ": ";
             }
             for (int j = 0; j < pcols; j++){
                 cout << seatMap[i][j]->getSeatAv();
 //                cout << seatMap[i][j]->getSeatCol() << ":" << seatMap[i][j]->getSeatAv();
             }
+            cout << endl;
         }
         cout << "---------------- Economy Class ----------------" << endl;
 
-        for(int i = 0; i < (prows + frows + erows); i++){
+        for(int i = prows + frows; i < (prows + frows + erows); i++){
             if(i < 9) {
-                cout << " " << i << ": ";
+                cout << " " << to_string(i+1) << ": ";
             }else {
-                cout << i << ": ";
+                cout << to_string(i+1) << ": ";
             }
             for (int j = 0; j < ecols; j++){
                 cout << seatMap[i][j]->getSeatAv();
 //                cout << seatMap[i][j]->getSeatCol() << ":" << seatMap[i][j]->getSeatAv();
             }
+            cout << endl;
         }
         cout << "-----------------------------------------------" << endl;
     }
 
     void Flight::clearSeatMap() {
-        int frows = designatedPlane->getFirstClassRows();
-        int fcols = designatedPlane->getFirstClassColumns();
-        int erows = designatedPlane->getFirstClassRows();
-        int ecols = designatedPlane->getFirstClassColumns();
-        int prows = designatedPlane->getFirstClassRows();
-        int pcols = designatedPlane->getFirstClassColumns();
+        int frows = designatedPlane.getFirstClassRows();
+        int fcols = designatedPlane.getFirstClassColumns();
+        int erows = designatedPlane.getFirstClassRows();
+        int ecols = designatedPlane.getFirstClassColumns();
+        int prows = designatedPlane.getFirstClassRows();
+        int pcols = designatedPlane.getFirstClassColumns();
         int i;
         for(i = 0; i < frows; i++){
             for (int j = 0; j < fcols; j++){
