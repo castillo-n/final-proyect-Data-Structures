@@ -328,16 +328,21 @@ void save(){
     }
     savingStream << endl;
     savingStream << "PASSENGERS" << endl;
-    for(int i = 0; i < PassengerList.size(); i++){
-            cout << PassengerList[i].getName() << endl;
-        savingStream << PassengerList[i].getName()  << endl;
+    for(int i = 0; i < PassengerList.size(); i++) {
+        if (PassengerList[i].getName() != "" && PassengerList[i].getName() != " " && PassengerList[i].getName() != "\n") {
+            savingStream << PassengerList[i].getName() << endl;
+        }
     }
 
-        savingStream << endl;
+
+
+    savingStream << endl;
+
 
     savingStream << "FLIGHTS" << endl;
-    for(int i = 0; i < FlightList.size(); i++){
-        savingStream
+    for(int i = 0; i < FlightList.size(); i++) {
+        if (FlightList[i].getIdentifier() != "" || FlightList[i].getIdentifier() != " ") {
+            savingStream
             << FlightList[i].getIdentifier() << " "
             << FlightList[i].getDepCity() << " "
             << FlightList[i].getDepTime() << " "
@@ -345,10 +350,11 @@ void save(){
             << FlightList[i].getArrDate() << " "
             << FlightList[i].getArrTime() << " "
             << endl;
-        for(int j = 0; j < FlightList[i].numOfPassengers(); j++){
-            savingStream  << FlightList[i].getPassenger(j).getName() << "\n\r";
-        }
+            for (int j = 0; j < FlightList[i].numOfPassengers(); j++) {
+                savingStream << FlightList[i].getPassenger(j).getName() << "\n\r";
+            }
 
+        }
     }
 
     savingStream << endl;
