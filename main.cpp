@@ -25,8 +25,6 @@ void setUpFlights();
 void addPassengerToFlight();
 void printFlights();
 void printPassengerListOnFlight();
-void purchaseSeat();
-void removeOldFlights();
 void printItinerary();
 void menu();
 void lineToFleet(string line);
@@ -62,8 +60,9 @@ int main() {
         cout << "       5_ Change the plane assigned to a flight" << endl;
         cout << "       6_ Print the upcoming flights" << endl;
         cout << "       7_ Print a list of passengers on a given flight" << endl;
-        cout << "       8_ Save current information" << endl;
-        cout << "       9_ Exit" << endl;
+        cout << "       8_ Print Interary for passenger" << endl;
+        cout << "       9_ Save current information" << endl;
+        cout << "       10_ Exit" << endl;
         cout << "--------------------------------------------------------------------------" << endl;
         cout << "# >> ";
         cin >> Option;
@@ -92,9 +91,12 @@ int main() {
                 printPassengerListOnFlight();
                 break;
             case 8:
-                save();
+                printItinerary();
                 break;
             case 9:
+                save();
+                break;
+            case 10:
                 checker = false;
                 break;
             default:
@@ -626,37 +628,56 @@ void addPassengerToFlight(){
     }
 }
 
-void purchaseSeat(){
-    string identifier;
-    Flight flight;
-    Seat seat;
-    int row;
-    int col;
-    bool isThere = false;
-    cout << "Enter the Flight's Tag: ";
-    cin >> identifier;
+void printItinerary(){
 
-    for(int i = 0; i < FlightList.size(); i++){
-        if(FlightList[i].getIdentifier() == identifier){
-            flight = FlightList[i];
-            isThere = true;
+    Itinerary * it;
+    int passengerIndex;
+    string first;
+    string last;
+    string name;
+    string identifier;
+    bool isIt = true;
+
+    cout << "Enter Passenger's First Name: ";
+    cin >> first;
+    cin.clear();
+    cout << "Enter Passenger's Last Name: ";
+    cin >> last;
+    cin.clear();
+
+    name = first + " " + last;
+
+    for(int i = 0; i < PassengerList.size(); i++){
+        if(PassengerList[i].getName() == name){
+            passengerIndex = i;
         }
     }
-    if(isThere) {
-        flight.displaySeatMap();
-        cout << "Enter the Seat Row: ";
-        cin >> row;
-        cout << "Enter the seat Col: ";
-        cin >> col;
 
-        seat = flight.getSeat(row, col);
-        flight.occupySeat(row, col);
+    while(isIt) {
+        cout << "Enter the flight identfier for the Itinerary of that flight: ";
+        cin >> identifier;
+        cin.clear();
 
-        cout << "Your seat has been purchased." << endl
-             << "Balance: $" << seat.CalculatePrice();
+        it = PassengerList[passengerIndex].getItinerary(identifier);
 
-    }else{
-        cout << "There is no flight with that identifier" << endl;
+        if(it->getFlight()->getIdentifier() == identifier){
+            isIt = false;
+            cout << "-------------------------------------" << endl
+                 << "Name: " << name << endl
+                 << "Flight Identifier: " << it->getFlight()->getIdentifier() << endl
+                 << "Departing City: " << it->getFlight()->getDepCity() << endl
+                 << "Departing Date: " << it->getFlight()->getDepDate() << endl
+                 << "Departing Time: " << it->getFlight()->getDepTime() << endl
+                 << "Arrival City: " << it->getFlight()->getArrCity() << endl
+                 << "Arrival Date: " << it->getFlight()->getArrDate() << endl
+                 << "Arrival Time: " << it->getFlight()->getArrTime() << endl
+                 << "Seat: Row " << it->getSeat()->getSeatRow() << " Column " << it->getSeat()->getSeatCol() << endl
+                 << "Price: " << it->getSeat()->CalculatePrice() << endl
+                 << "-------------------------------------" << endl;
+        }
+        else{
+            cout << "Identifier entered in does not match. Please enter a proper identifier." << endl;
+        }
     }
 
 }

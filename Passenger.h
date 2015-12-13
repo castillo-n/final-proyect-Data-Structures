@@ -21,7 +21,7 @@ namespace Airline {
     public:
         Passenger();
         string getName() const;
-        Itinerary getItinerary(string flightIdentifier )const;
+        Itinerary* getItinerary(string flightIdentifier )const;
         string dumpItinerary();
         void setItinerary(Itinerary * theItine);
         void setName(string & fName, string & lName);

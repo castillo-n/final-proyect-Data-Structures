@@ -15,9 +15,9 @@ namespace Airline {
     class Itinerary {
     public:
         Itinerary();
-        Flight getFlight() const;
-        Seat getSeat() const;
-        Passenger getPassenger()const;
+        Flight* getFlight() const;
+        Seat* getSeat() const;
+        Passenger* getPassenger()const;
         void setFlight(Flight theFlight) ;//this function will be receiving a pointer
         void setSeat(Seat  theSeat) ;//this function will be receiving a pointer
         void setPassenger(Passenger thePassenger) ;//this function will be receiving a pointer

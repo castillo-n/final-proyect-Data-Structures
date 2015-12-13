@@ -76,13 +76,13 @@ namespace Airline {
         lastName = lName;
     }
 
-    Itinerary Passenger::getItinerary(string flightIdentifier)const{
+    Itinerary* Passenger::getItinerary(string flightIdentifier)const{
         for( int it = 0; it != itineraryList.size(); ++it) {
             if (flightIdentifier == itineraryList[it]->getFlight().getIdentifier()) {
-                return *itineraryList[it];
+                return itineraryList[it];
             }
         }
-        return Itinerary();
+        return new Itinerary();
     }
     string Passenger::dumpItinerary(){
         string theFuckingDump=" ";
