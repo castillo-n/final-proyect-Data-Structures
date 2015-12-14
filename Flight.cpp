@@ -63,6 +63,65 @@ namespace Airline{
     void Flight::setArrDate(string newArrDate){
         arrDate = newArrDate;
     }
+    void Flight::setArrDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm){
+        {
+            bool a = false;
+            bool add20 = false;
+            if (year > 0 && year < 2025) { // at this time they should pay us to make an upgrade :)
+                if(year < 100){
+                    add20 = true;
+                }
+                if (month > 0 && month < 13) {
+                    arrDateMonth = month;
+                    if (day > 0 && day <
+                                   32) { // we could be more specific and check fo year and month to check for 2/29 instead of 2/28 or for the mothns with 30 days instead of 31
+                        arrDateDay = day;
+                        if (hour > -1 && hour < 13) {
+                            arrDateHour = min;
+                            if (min > -1 && min < 60) {
+                                arrDateMin = min;
+                                if (amPm == "AM" || amPm == "Am" || amPm == "am" || amPm == "PM" || amPm == "Pm" ||
+                                    amPm == "pm") {
+                                    arrDateAmPm = amPm;
+                                    if(add20) {
+                                        arrTime =
+                                                to_string(month) + "/" + to_string(day) + "/20" + to_string(year) + " " +
+                                                to_string(hour) + ":" + to_string(min) + " " + amPm;
+                                    }else{
+
+                                        arrTime =
+                                                to_string(month) + "/" + to_string(day) + "/" + to_string(year) + " " +
+                                                to_string(hour) + ":" + to_string(min) + " " + amPm;
+                                    }
+                                } else {
+//                                cout << "wrong time stamp" << endl;
+                                    a = true;
+                                }
+                            } else {
+//                            cout << "wrong minutes" << endl;
+                                a = true;
+                            }
+                        } else {
+//                        cout << "wrong minutes" << endl;
+                            a = true;
+                        }
+                    } else {
+//                    cout << "wrong day" << endl;
+                        a = true;
+                    }
+                } else {
+//                cout << "wrong month" << endl;
+                    a = true;
+                }
+            } else {
+//            cout << "wrong year" << endl;
+                a = true;
+            }
+            if (a) {
+                arrTime ="01/01/2000 01:01 pm";
+            }
+        }
+    }
 
     string Flight::getArrDate() const{
         return arrDate;
@@ -70,11 +129,14 @@ namespace Airline{
 
     void Flight::setDepDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm) {
         bool a = false;
-        if (year > 2014 && month < 2025) { // at this time they should pay us to make an upgrade :)
+        bool add20 = false;
+        if (year > 0 && year < 2025) { // at this time they should pay us to make an upgrade :)
+            if(year < 100){
+                add20 = true;
+            }
             if (month > 0 && month < 13) {
                 depDateMonth = month;
-                if (day > 0 && day <
-                               32) { // we could be more specific and check fo year and month to check for 2/29 instead of 2/28 or for the mothns with 30 days instead of 31
+                if (day > 0 && day < 32) { // we could be more specific and check fo year and month to check for 2/29 instead of 2/28 or for the mothns with 30 days instead of 31
                     depDateDay = day;
                     if (hour > -1 && hour < 13) {
                         depDateHour = min;
@@ -83,11 +145,16 @@ namespace Airline{
                             if (amPm == "AM" || amPm == "Am" || amPm == "am" || amPm == "PM" || amPm == "Pm" ||
                                 amPm == "pm") {
                                 depDateAmPm = amPm;
-                                if(month < 10){
+                                if(add20) {
+                                    depTime =
+                                            to_string(month) + "/" + to_string(day) + "/20" + to_string(year) + " " +
+                                            to_string(hour) + ":" + to_string(min) + " " + amPm;
+                                }else{
 
-                                }
-                                depTime = to_string(month) + "/" + to_string(day) + "/" + to_string(year) + " " +
-                                          to_string(hour) + ":" + to_string(min) + " " + amPm;
+                                    depTime =
+                                            to_string(month) + "/" + to_string(day) + "/" + to_string(year) + " " +
+                                            to_string(hour) + ":" + to_string(min) + " " + amPm;
+                                }       to_string(hour) + ":" + to_string(min) + " " + amPm;
                             } else {
 //                                cout << "wrong time stamp" << endl;
                                 a = true;
@@ -113,7 +180,7 @@ namespace Airline{
             a = true;
         }
         if (a) {
-            depTime ="";
+            depTime ="01/01/2000 01:01 pm";
         }
     }
 
@@ -121,9 +188,9 @@ namespace Airline{
         return depTime;
     }
 
-    void Flight::setArrTime(string newArrTime){
-        arrTime = newArrTime;
-    }
+//    void Flight::setArrTime(string newArrTime){
+//        arrTime = newArrTime;
+//    }
 
     string Flight::getArrTime() const{
         return arrTime;

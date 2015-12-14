@@ -32,8 +32,9 @@ namespace Airline {
         void setArrDate(string newArrDate);
         string getArrDate() const;
         void setDepDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm);
+        void setArrDateTime(int & month, int & day, int & year, int & hour, int & min, string amPm);
         string getDepTime() const;
-        void setArrTime(string newArrTime);
+//        void setArrTime(string newArrTime);
         string getArrTime() const;
         void setIdentifier(string newIdentifier);
         string getIdentifier() const;
@@ -66,6 +67,12 @@ namespace Airline {
         string depTime;
         string arrDate;
         string arrTime;
+        int arrDateYear;
+        int arrDateMonth;
+        int arrDateDay;
+        int arrDateHour;
+        int arrDateMin;
+        string arrDateAmPm;
         int distance;
         string identifier;
         Plane designatedPlane;

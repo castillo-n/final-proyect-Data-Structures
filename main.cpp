@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <ctime>
 #include <cmath>
 #include <sys/types.h>
@@ -55,14 +56,15 @@ int main() {
         cout << "Select: " << endl;
         cout << "       1_ Add a new plane to the fleet" << endl;
         cout << "       2_ Add a new flight to the schedule" << endl;
-        cout << "       3_ Add a new passenger to the list of passengers" << endl;
-        cout << "       4_ Add a passenger to a flight" << endl;
-        cout << "       5_ Change the plane assigned to a flight" << endl;
-        cout << "       6_ Print the upcoming flights" << endl;
-        cout << "       7_ Print a list of passengers on a given flight" << endl;
-        cout << "       8_ Print Interary for passenger" << endl;
-        cout << "       9_ Save current information" << endl;
-        cout << "       10_ Exit" << endl;
+        cout << "       3_ Connect Plains to Flights" << endl;
+        cout << "       4_ Add a new passenger to the list of passengers" << endl;
+        cout << "       5_ Add a passenger to a flight" << endl;
+        cout << "       6_ Change the plane assigned to a flight" << endl;
+        cout << "       7_ Print the upcoming flights" << endl;
+        cout << "       8_ Print a list of passengers on a given flight" << endl;
+        cout << "       9_ Print Interary for passenger" << endl;
+        cout << "       10_ Save current information" << endl;
+        cout << "       11_ Exit" << endl;
         cout << "--------------------------------------------------------------------------" << endl;
         cout << "# >> ";
         cin >> Option;
@@ -76,27 +78,30 @@ int main() {
                 addNewFLight();
                 break;
             case 3:
-                addNewPassenger();
-                break;
-            case 4:
-                addPassengerToFlight();
-                break;
-            case 5:
                 connectPlaneToFlight();
                 break;
+            case 4:
+                addNewPassenger();
+                break;
+            case 5:
+                addPassengerToFlight();
+                break;
             case 6:
-                printFlights();
+                connectPlaneToFlight();
                 break;
             case 7:
-                printPassengerListOnFlight();
+                printFlights();
                 break;
             case 8:
-                printItinerary();
+                printPassengerListOnFlight();
                 break;
             case 9:
-                save();
+                printItinerary();
                 break;
             case 10:
+                save();
+                break;
+            case 11:
                 checker = false;
                 break;
             default:
@@ -153,6 +158,7 @@ void connect(){
     connectPlaneToFlight();
 //    cout << "works 2 "<<endl;
     setUpFlights();
+    connectPlaneToFlight();
 //    cout << "works 3 "<<endl;
 }
 void lineToFleet(string line){
@@ -224,8 +230,8 @@ void lineToPassenger(string line){
 }
 void lineToFlights(string line){
 //    cout << line << endl;
-    string id, dC, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm;
-    int check = 0;
+    string id, dC, aC, aD, aT, dDateYear, dDateMonth, dDateDay, dDateHour, dDateMin, dDateAmPm, aDateYear, aDateMonth, aDateDay, aDateHour, aDateMin, aDateAmPm;
+    int check = 0; ///bemidji 12/12/2015 12:12 am
     char lastChar = ' ';
     for(int i = 0; i < line.length(); i++){
         //cout << line[i] << endl;
@@ -272,12 +278,28 @@ void lineToFlights(string line){
             aC +=line[i];
         }
         else if(check == 9){
-            //cout << "aD "<< endl;
-            aD +=line[i];
+            //cout << "dDateMonth "<< endl;
+            aDateMonth += line[i];
         }
-        else if(check >= 10){
-            //cout << "aT "<< endl;
-            aT +=line[i];
+        else if(check == 10){
+            //cout << "dDateDay "<< endl;
+            aDateDay += line[i];
+        }
+        else if(check == 11){
+            //cout << "dDateYear "<< endl;
+            aDateYear += line[i];
+        }
+        else if(check == 12){
+            //cout << "aDateHour "<< endl;
+            aDateHour += line[i];
+        }
+        else if(check == 13){
+            //cout << "aDateMin "<< endl;
+            aDateMin += line[i];
+        }
+        else if(check == 14){
+            //cout << "aDateAmPm "<< endl;
+            aDateAmPm += line[i];
         }
         lastChar = line[i];
     }
@@ -285,7 +307,7 @@ void lineToFlights(string line){
     int m=0, d=0,y=0,h=0,mi=0;
     newFlight->setIdentifier(id);
     newFlight->setDepCity(dC);
-    if(dDateMonth!="") {
+    if(aDateMonth!="") {
         m = stoi(dDateMonth);
     }
     if(dDateMonth!="") {
@@ -301,9 +323,25 @@ void lineToFlights(string line){
         mi = stoi(dDateMin);
     }
     newFlight->setDepDateTime(m, d , y, h, mi, dDateAmPm);
+
+    if(aDateMonth!="") {
+        m = stoi(aDateMonth);
+    }
+    if(aDateMonth!="") {
+        d = stoi(aDateDay);
+    }
+    if(aDateMonth!="") {
+        y = stoi(aDateYear);
+    }
+    if(aDateMonth!="") {
+        h = stoi(aDateHour);
+    }
+    if(aDateMonth!="") {
+        mi = stoi(aDateMin);
+    }
+    newFlight->setArrDateTime(m, d , y, h, mi, aDateAmPm);
     newFlight->setArrCity(aC);
     newFlight->setArrDate(aD);
-    newFlight->setArrTime(aT);
     FlightList.push_back(*newFlight);
     //cout << "flights line done!" << endl;
 }
@@ -355,12 +393,11 @@ void save(){
             << FlightList[i].getDepCity() << " "
             << FlightList[i].getDepTime() << " "
             << FlightList[i].getArrCity() << " "
-            << FlightList[i].getArrDate() << " "
             << FlightList[i].getArrTime() << " "
             << endl;
-            for (int j = 0; j < FlightList[i].numOfPassengers(); j++) {
-                savingStream << FlightList[i].getPassenger(j).getName() << "\n\r";
-            }
+//            for (int j = 0; j < FlightList[i].numOfPassengers(); j++) {
+//                savingStream << FlightList[i].getPassenger(j).getName() << "\n\r";
+//            }
 
         }
     }
@@ -427,9 +464,14 @@ void addNewFLight(){
     int DepMin;
     string DepAmPm;
     string DepTime;
-    string ArrCity;
-    string ArrDate;
+    int ArrMonth;
+    int ArrYear;
+    int ArrDay;
+    int ArrHour;
+    int ArrMin;
+    string ArrAmPm;
     string ArrTime;
+    string ArrCity;
     int distance;
 
     cout << "Enter the Flight's tag: ";
@@ -463,14 +505,25 @@ void addNewFLight(){
     cin >> ArrCity;
     cin.clear();
     flight.setArrCity(ArrCity);
-    cout << "Enter the Arrival Date: ";
-    cin >> ArrDate;
+    cout << "Enter the Arrival Month: ";
+    cin >> ArrMonth;
     cin.clear();
-    flight.setArrDate(ArrDate);
-    cout << "Enter the Arrival Time: ";
-    cin >> ArrTime;
+    cout << "Enter the Arrival Day: ";
+    cin >> ArrDay;
     cin.clear();
-    flight.setArrTime(ArrTime);
+    cout << "Enter the Arrival Year: ";
+    cin >> ArrYear;
+    cin.clear();
+    cout << "Enter the Arrival Hour: ";
+    cin >> ArrHour;
+    cin.clear();
+    cout << "Enter the Arrival Minute: ";
+    cin >> ArrMin;
+    cin.clear();
+    cout << "Enter the Arrival time (am or pm): ";
+    cin >> ArrAmPm;
+    cin.clear();
+    flight.setArrDateTime(DepMonth, DepDay, DepYear, DepHour, DepMin, DepAmPm);
     cout << "Enter the distance in miles of the Flight: ";
     cin >> distance;
     cin.clear();
@@ -560,18 +613,18 @@ void addPassengerToFlight(){
             name = first + " " + last;
             bool pass = true;
             for (int i = 0; i < PassengerList.size(); i++) {
-                cout << "in for loop " << endl;
-                cout << " ----------------- " << endl;
-                cout << PassengerList[i].getName() << endl;
-                cout << " ----------------- " << endl;
-                cout << name << endl;
+//                cout << "in for loop " << endl;
+//                cout << " ----------------- " << endl;
+//                cout << PassengerList[i].getName() << endl;
+//                cout << " ----------------- " << endl;
+//                cout << name << endl;
                 if (PassengerList[i].getName() == name) {
                     cout << PassengerList[i].getName() << endl;
                     indexPassenger = i;
                     pass = false;
                 }
             }
-            cout << "done with the loop " << endl;
+//            cout << "done with the loop " << endl;
             if (pass) {
                 cout << "there was no passager with that name, creating one..." << endl;
                 Passenger p = Passenger();
@@ -589,7 +642,7 @@ void addPassengerToFlight(){
                 cin >> row;
                 cout << "Enter the seat Col: ";
                 cin >> col;
-                seat = FlightList[indexFlight].getSeat(row, col);
+                seat = FlightList[indexFlight].getSeat(row-1, col-1);
                 seat->setNumDays(FlightList[indexFlight].amountOfDaysTo());
                 double price = seat->CalculatePrice();
                 if (seat->getSeatAv() != 'X') {
@@ -600,7 +653,7 @@ void addPassengerToFlight(){
                     endl;
                     cin >> yesNo;
                     if (yesNo == "YES" || yesNo == "Yes" || yesNo == "yes") {
-                        FlightList[indexFlight].occupySeat(row, col); //ocupy the seat
+                        FlightList[indexFlight].occupySeat(row-1, col-1); //ocupy the seat
                         it->setSeat(*seat);
                         PassengerList[indexPassenger].setItinerary(it);
                         occupied = false;
@@ -685,20 +738,21 @@ void printItinerary(){
 
 
 void printFlights(){
-    for(int i = 0; i < FlightList.size(); i++){
-        cout << "Flight: " << FlightList[i].getIdentifier() << endl;
-        cout << "Departing City: " << FlightList[i].getDepCity() << endl;
-        cout << "Departure Date: " << FlightList[i].getDepDate() << endl;
-        cout << "Departure Time: " << FlightList[i].getDepTime() << endl;
-        cout << "Arriving City: " << FlightList[i].getArrCity() << endl;
-        cout << "Arrival Date: " << FlightList[i].getArrDate() << endl;
-        cout << "Arrival Time: " << FlightList[i].getArrTime() << endl << endl;
+    for(int i = 0; i < FlightList.size(); i++) {
+        if (FlightList[i].getIdentifier() != "" && FlightList[i].getIdentifier() != " " &&
+            FlightList[i].getIdentifier() != "0") {
+            cout << "Flight: " << FlightList[i].getIdentifier() << endl;
+            cout << "Departing City: " << FlightList[i].getDepCity() << endl;
+            cout << "Departure Time: " << FlightList[i].getDepTime() << endl;
+            cout << "Arriving City: " << FlightList[i].getArrCity() << endl;
+            cout << "Arrival Time: " << FlightList[i].getArrTime() << endl << endl;
+        }
     }
 }
 
 void printPassengerListOnFlight(){
     string identifier;
-    int index=0;
+    int index=-1;
     Passenger p;
 
     cout << "Enter The Flight's Tag: ";
@@ -709,14 +763,15 @@ void printPassengerListOnFlight(){
             index = i;
         }
     }
-
-    cout << "Flight: " << FlightList[index].getIdentifier();
-
-    for(int i = 0; i < FlightList[index].numOfPassengers(); i++){
-        p = FlightList[index].getPassenger(i);
-        cout << i << ": " << p.getName() << endl;
+    if(index != -1) {
+        cout << "Flight: " << FlightList[index].getIdentifier();
+        for (int i = 0; i < FlightList[index].numOfPassengers(); i++) {
+            p = FlightList[index].getPassenger(i);
+            cout << i << ": " << p.getName() << p.getItinerary(identifier)->getSeat()->getSeatRow() << p.getItinerary(identifier)->getSeat()->getSeatColChar() << endl;
+        }
+    }else{
+        cout << "sorry there is no fly with that id" << endl;
     }
-
 }
 
 // don't know what this does
