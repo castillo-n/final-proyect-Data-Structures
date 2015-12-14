@@ -78,7 +78,7 @@ namespace Airline {
 
     Itinerary* Passenger::getItinerary(string flightIdentifier)const{
         for( int it = 0; it != itineraryList.size(); ++it) {
-            if (flightIdentifier == itineraryList[it]->getFlight().getIdentifier()) {
+            if (flightIdentifier == itineraryList[it]->getFlight()->getIdentifier()) {
                 return itineraryList[it];
             }
         }
@@ -87,7 +87,7 @@ namespace Airline {
     string Passenger::dumpItinerary(){
         string theFuckingDump=" ";
         for( int it = 0; it != itineraryList.size(); ++it) {
-                theFuckingDump += itineraryList[it]->getFlight().getIdentifier() + " " + to_string(itineraryList[it]->getSeat().getSeatRow())+to_string(itineraryList[it]->getSeat().getSeatCol()) + "-";
+                theFuckingDump += itineraryList[it]->getFlight()->getIdentifier() + " " + to_string(itineraryList[it]->getSeat()->getSeatRow())+to_string(itineraryList[it]->getSeat()->getSeatCol()) + "-";
         }
         return theFuckingDump;
     }
